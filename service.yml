@@ -1,0 +1,6 @@
+name: learn-apache-kafka-for-dotnet-developers-exercises
+lang: unknown
+git:
+  enable: true
+github:
+  enable: true
