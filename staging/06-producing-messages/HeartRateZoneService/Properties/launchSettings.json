@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "HeartRateZoneService": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
