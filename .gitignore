@@ -1,0 +1,11 @@
+# Mac
+.DS_store
+
+# .Net Build Files
+
+bin
+obj
+.vs
+
+# Misc
+target
