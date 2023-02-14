@@ -1,0 +1,27 @@
+image: gitpod/workspace-dotnet-lts
+
+tasks:
+  - name: Gitpod Init
+    command: |
+      gp preview http://localhost:5000/swagger/index.html
+      exit
+  - name: HeartRateZoneService
+    openMode: tab-before
+    init: |
+      mkdir HeartRateZoneService
+    command: |
+      cd HeartRateZoneService
+  - name: ClientGateway
+    openMode: tab-before
+    init: |
+      mkdir ClientGateway
+    command: |
+      cd ClientGateway
+  - name: exercises
+    openMode: tab-before
+
+ports:
+  - port: 5000
+    onOpen: ignore
+
+workspaceLocation: /workspace/learn-apache-kafka-for-dotnet-developers-exercises/exercises

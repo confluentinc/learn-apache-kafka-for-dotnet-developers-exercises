@@ -4,6 +4,12 @@ This repository is for the **Apache Kafka for .Net Developers** course provided 
 
 For full details of the course and exercise instructions, please visit [developer.confluent.io](https://developer.confluent.io/learn-kafka/apache-kafka-for-dotnet-developers/).
 
+## Gitpod
+
+A Gitpod configuration is available for these exercises. You can use this to construct a pre-configured environment suitable for working on the exercises:
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/confluentinc/learn-apache-kafka-for-dotnet-developers-exercises)
+
 ## Repo Structure
 
 ### exercises
