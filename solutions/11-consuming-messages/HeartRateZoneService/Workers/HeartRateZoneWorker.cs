@@ -8,7 +8,7 @@ public class HeartRateZoneWorker : BackgroundService
 {
     private readonly ILogger<HeartRateZoneWorker> _logger;
     private readonly IConsumer<String, Biometrics> _consumer;
-    private const String BiometricsImported = "BiometricsImported";
+    private const String BiometricsImportedTopicName = "BiometricsImported";
 
     public HeartRateZoneWorker(IConsumer<String, Biometrics> consumer, ILogger<HeartRateZoneWorker> logger)
     {
@@ -19,7 +19,7 @@ public class HeartRateZoneWorker : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        _consumer.Subscribe(BiometricsImported);
+        _consumer.Subscribe(BiometricsImportedTopicName);
 
         while(!stoppingToken.IsCancellationRequested)
         {

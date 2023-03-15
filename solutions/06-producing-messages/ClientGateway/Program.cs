@@ -15,7 +15,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.Configure<ProducerConfig>(builder.Configuration.GetSection("Kafka"));
 
-builder.Services.AddSingleton(sp =>
+builder.Services.AddSingleton<IProducer<String, String>>(sp =>
 {
     var config = sp.GetRequiredService<IOptions<ProducerConfig>>();
 
