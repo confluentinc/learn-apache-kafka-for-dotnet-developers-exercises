@@ -13,7 +13,19 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+/* TODO: Load a config of type ProducerConfig from the "Kafka" section of the config:
+builder.Services.Configure<MyConfig>(builder.Configuration.GetSection("MyConfigSection"));
+*/
 
+/* TODO: Register an IProducer of type <String, String>:
+builder.Services.AddSingleton<IProducer<Key, Value>>(sp =>
+{
+    var config = sp.GetRequiredService<IOptions<MyConfig>>();
+
+    return new ProducerBuilder<Key, Value>(config.Value)
+        .Build();
+});
+*/
 
 var app = builder.Build();
 
