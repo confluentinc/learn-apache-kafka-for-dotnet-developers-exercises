@@ -10,6 +10,12 @@ A Gitpod configuration is available for these exercises. You can use this to con
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/confluentinc/learn-apache-kafka-for-dotnet-developers-exercises)
 
+## Cheatsheet
+
+A cheatsheet containing code snippets from the course lectures can be found in:
+
+[cheatsheet.md](cheatsheet.md)
+
 ## Repo Structure
 
 ### exercises
