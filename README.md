@@ -2,7 +2,7 @@
 
 This repository is for the **Apache Kafka for .Net Developers** course provided by Confluent Developer.
 
-For full details of the course and exercise instructions, please visit [developer.confluent.io](https://developer.confluent.io/learn-kafka/apache-kafka-for-dotnet-developers/).
+For full details of the course and exercise instructions, please visit [developer.confluent.io](https://developer.confluent.io/learn-kafka/apache-kafka-for-dotnet/overview/).
 
 ## Gitpod
 
