@@ -1,0 +1,30 @@
+const FORM_ID = 7106;
+const MUNCHKIN_ID = '582-QHX-262';
+const MARKETO_BASE_URL = '//go.confluent.io';
+const scriptSource = `${MARKETO_BASE_URL}/js/forms2/js/forms2.min.js`;
+const marketoScript = document.createElement('script');
+marketoScript.src = scriptSource;
+marketoScript.onload = () => {
+
+  const formElem = document.querySelector('#subscription-form');
+  formElem.addEventListener('submit', evt => {
+    evt.preventDefault();
+    const formData = new FormData(evt.target);
+    const email = formData.get('email');
+    if (!email) return;
+
+    const mktoForm = window.MktoForms2.getForm(FORM_ID);
+    mktoForm.setValues({ Email: email });
+    if (mktoForm.submittable()) {
+      mktoForm.submit();
+    }
+  });
+
+  window.MktoForms2.loadForm(MARKETO_BASE_URL, MUNCHKIN_ID, FORM_ID, (form) => {
+    form.onSuccess(() => {
+      document.querySelector('.subscription-container').classList.add('submitted');
+      return false;
+    });
+  });
+}
+document.body.appendChild(marketoScript);

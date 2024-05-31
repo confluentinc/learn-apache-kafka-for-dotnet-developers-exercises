@@ -1,0 +1,67 @@
+ClientGateway and HeartRateZoneService Project Documentation
+
+Apache Kafka is an event streaming platform used to collect, process and store and integrate data at scale.
+It has numerous use cases including distributed logging, stream processing, data integration and pub/sub messaging.
+
+Events
+
+An event is any type of action, incident or change that's identified or recorded by software applications.
+For example, a payment, a website click or a temperature reading along with what happpened.
+
+
+Kafka is based on the abstraction of a distibuted commit log. By splitting a log into partitions, Kafka is able to scake out systems.
+As such Kafka models events as key/value pairs. Internally keys and values are just sequence of bytes but excernally un programming language
+they are often structure objects represented in language type system.
+
+The transalation between language types and internal bytes is called serialization and de serialization.
+
+The serialized format is usually JSON, JSON schema, avro or protobuf.
+
+
+Clusters: 
+ A kafka cluster is a group of interconnected Kafka brokers a that manage and distribute real-time data streaming, processing and storage as if they
+ are a single system.
+
+ By distributing tasks and sevices across multiple Kafka brokers, the kafka cluster improves availability, reliability and performance.
+
+Topic: 
+A kafka Topic is a user-defined category or feed name where event messages are stored and published by prodcuers and subscribed to by consumers.
+
+Each topic is a log of event messages. Topics are stored in one or more partitions, which distribute topic records brokers in a kafka cluster, 
+Each partition is an ordered, immutable sequence of records that are continually appended to a topic.
+
+ Partition:
+ A partition is a unit of data storage that divides a topic into multiple , parallel event streams, each of which is stored on separate Kafka brokers and 
+ can be consumed independently.
+
+    Partition is a key concept in Kafka because it allows Kakfa to scale horizontally by adding more brokers to the clister.
+    Partitions are also the unit of parallelism in Kafka. A topuc can have one or more paritions and each partition is an ordered, immutable sequecne of event records
+    that is conitinually appended to a parition log.
+ 
+
+ClientGateway
+The ClientGateway is a web application that serves as a gateway for client requests. 
+It is responsible for handling HTTP requests from clients and forwarding them to the appropriate services.
+
+Key Components
+ClientGatewayController
+The ClientGatewayController is the main controller in the project. It handles HTTP requests from clients and processes them accordingly.
+
+ProducerService
+The ProducerService is responsible for producing messages to a Kafka topic BiometricsImported . It uses an instance of IProducer<string, BioMetrics> to produce messages.
+
+Testing
+The project includes a suite of unit tests in the ProducerServiceTest class. These tests verify the functionality of the ProducerService using a mock IProducer<string, BioMetrics>.
+
+HeartRateZoneService
+The HeartRateZoneService is a background service that consumes messages from a Kafka topic and processes them.
+
+Key Components
+HeartRateZoneWorker
+The HeartRateZoneWorker is the main worker in the service. It consumes messages from a Kafka topic using an instance of IConsumer<string, BioMetrics>, processes the messages, and produces the results to another Kafka topic.
+
+HeartRateZoneCalculator
+The HeartRateZoneCalculator is a utility class that calculates the heart rate zone of a BioMetrics object.
+
+Testing
+The project includes a suite of unit tests in the HeartRateZoneWorkerTests class. These tests verify the functionality of the HeartRateZoneWorker using a mock IConsumer<string, BioMetrics>.

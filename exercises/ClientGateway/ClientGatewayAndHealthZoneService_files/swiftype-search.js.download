@@ -1,0 +1,128 @@
+/**
+  * This file controls the structure and logic around search and autocomplete.
+  * This includes filtering, and custom search result display.
+  *
+  */
+
+/*------------*
+ | Filtering  |
+ *------------*/
+
+(function () {
+  const sites = {
+    1: 'Documentation',
+    // 2: 'Confluent Blog',
+    // 3: 'Confluent Developer',
+    // 4: 'ksqlDB Documentation',
+    // 5: 'Kafka Tutorials', // DEPRECATED
+    // 6: 'Cloud Telemetry', // DEPRECATED
+  }
+
+  /*----------------------*
+  | RENDERING FUNCTIONS  |
+  *----------------------*/
+
+  const cleanText = function(title, sections) {
+    const cleaned = { title: null, section: null };
+    if (sections) {
+      cleaned.sections = sections
+        .replace(/¶/, '')
+        .replace(/( \| Confluent Documentation)/, '')
+        .replace(/<em>/, '')
+        .replace(/<\/em>/, '');
+    }
+    if (title) {
+      cleaned.title = title
+        .replace(/¶/, '')
+        .replace(/( \| Confluent Documentation)/, '')
+        .replace(/<em>/, '')
+        .replace(/<\/em>/, '');
+    }
+    return cleaned;
+  }
+  // Renders the autocomplete elements
+  // note 'page' is the default document type
+  const customRenderFunction = function(document_type, item) {
+    const text = cleanText(
+      item.highlight['title'] || item.title,
+      item.highlight['sections'] || item.sections[0]
+    );
+    let out = '<a href="' + Swiftype.htmlEscape(item['url']) + '" class="st-ui-result">';
+    out+= '<div class="st-ui-type-heading">' + text.title + '</div>';
+    out+= text.sections ? ('<div class="st-ui-type-detail">' + text.sections + '</div>') : '';
+    if (item['site-id']) out+= '<div class="st-site-label">' + sites[item['site-id']] + '</div>';
+    out+= '</a>';
+    return out;
+  };
+
+  function bindSearchFormEvents({ searchToggleSelector, pageHeaderSelector, searchActiveClass, searchWrapperSelector }) {
+    document.querySelector(searchToggleSelector).addEventListener('click', () => {
+      document.querySelector(pageHeaderSelector).classList.add(searchActiveClass);
+      document.querySelector(`${searchWrapperSelector} .st-search-input`).focus();
+    });
+
+    document
+    .querySelector(`${searchWrapperSelector} .search-close`)
+    .addEventListener('click', () => {
+      document
+        .querySelector(pageHeaderSelector)
+        .classList.remove(searchActiveClass);
+    });
+
+    document
+      .querySelector(`${searchWrapperSelector} .st-search-input`)
+      .addEventListener('focusout', () => {
+        document
+          .querySelector(pageHeaderSelector)
+          .classList.remove(searchActiveClass);
+      });
+
+    $(`${searchWrapperSelector} .st-search-input`).swiftype({
+      engineKey: 'FbBthqzRNii8B32is9R2',
+      renderFunction: customRenderFunction,
+      filters: { page: { 'site-id': [1] } },
+      // log2(x) * relevancy score where x = docs-boost metatag value
+      functionalBoosts: { page: { 'docs-boost': 'logarithmic' } },
+    });
+
+    // Prevents modal from showing and directs to the dedicated search page
+    const inputForm = document.querySelector(
+      `${searchWrapperSelector} .search-input-form`
+    );
+    inputForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const searchTerm = encodeURIComponent(
+        inputForm.querySelector('input').value
+      );
+      window.location.href = `${window.location.origin}/search.html#stq=${searchTerm}&stp=1`;
+    });
+  }
+  /*-------------*
+  | INITIALIZER  |
+  *--------------*/
+  const initializer = function() {
+    // Initialize swifttype autocomplete plugin
+
+    // remove the search query hash values when the search modal is closed
+    // this mimicks the default Swiftype plugin
+    $('#search-results').on('hide.bs.modal', function () {
+      window.location.hash = '';
+    });
+
+    bindSearchFormEvents({
+      searchToggleSelector: '.search-toggle',
+      pageHeaderSelector: '.page-header-nav',
+      searchActiveClass: 'search-active',
+      searchWrapperSelector: '.search-wrapper',
+    });
+
+    bindSearchFormEvents({
+      searchToggleSelector: '.search-toggle-mobile',
+      pageHeaderSelector: '.page-header-nav-mobile',
+      searchActiveClass: 'search-active-mobile',
+      searchWrapperSelector: '.search-wrapper-mobile',
+    });
+  }
+
+  $(initializer);
+})();

@@ -1,0 +1,110 @@
+String.prototype.replaceAll = function (target, replacement) {
+    return this.split(target).join(replacement);
+};
+
+function modifyNav() {
+    // when user presses toctree arrow button slide toctreee out of frame
+    $(".toggle-columns").click(function (e) {
+        e.preventDefault();
+        $("body").toggleClass("one-column");
+    });
+
+    // parent toctree arrow links expand children
+    $(".wy-side-scroll .wy-menu-vertical li").each(function () {
+        const $this = $(this);
+        if ($this.find("ul").length) {
+            $this.addClass("has-children");
+            $this.find("a:eq(0)").click(function (e) {
+                e.preventDefault();
+                $this.toggleClass("expand");
+            });
+        }
+    });
+
+    // add current class to parent ul and li for current anchor tags
+    $("a.current").parents("ul, li").addClass("current");
+
+    // set expansion for the current section by default
+    $("a.current").parents("li").addClass("expand");
+
+    // add highlight class to parent li for current anchor tags
+    $("a.current").parent("li").addClass("highlight");
+
+    // when in page links are clicked
+    $(window).on("hashchange", function () {
+        if (!location.hash) {
+            // scroll to top of the page if no hash is specified
+            $(".scroll-container").scrollTop(0);
+        }
+        $("a.current").parents("ul, li").addClass("current");
+        $("a.current").parents("li").addClass("expand");
+    });
+
+    // show toggle toctree arrow button
+    $(".wy-side-scroll .wy-menu-vertical, .toggle-columns").show();
+}
+
+$(function () {
+  // enable bootstrap tooltips
+  const glossaryTooltips = Array.from(document.querySelectorAll('.glossary-tooltip'));
+  glossaryTooltips.forEach(gt => {
+    gt.parentNode.classList.add('glossary-tooltip-wrapper');
+  });
+  if (glossaryTooltips.length) {
+    $('[data-toggle="tooltip"]').tooltip();
+  }
+
+  // This adds a behavior where, if an anchor link has scrolled the page,
+  // clicking the header in the sidenav for the current page will scroll the
+  // page to the top.
+  $("a.reference").on('click', function (e) {
+      e.stopPropagation();
+      var subNavScroll = $(this).position().top;
+      window.setTimeout(function () {
+          if (window.location.hash) {
+              $(".wy-side-scroll").scrollTop(subNavScroll);
+          }
+      }, 100);
+  });
+
+  setTimeout(modifyNav, 400);
+
+  $('.hamburger').on('click', function() {
+    $(this).toggleClass('open');
+    $('.mobile-nav').toggleClass('open');
+  });
+  $('.nav-accordion-wrapper').on('click', function() {
+    $(this).toggleClass('open');
+  });
+
+  // USERBACK Feedback Widget
+  window.Userback = window.Userback || {};
+  Userback.access_token = '35466|68574|p6bqdPGbEaCYbpNutbeJVnQG4';
+  Userback.on_open = () => {
+    // timeout is so that the UI will actually update the text
+    setTimeout(() => {
+      const emailInput = document.querySelector('.userback-controls input[type="email"]');
+      if (emailInput) {
+        emailInput.placeholder = `(Optional) ${emailInput.placeholder}`;
+      }
+    });
+  }
+
+  (function(d) {
+    var s = d.createElement('script');s.async = true;
+    s.src = 'https://static.userback.io/widget/v1.js';
+    (d.head || d.body).appendChild(s);
+  })(document);
+
+  const userbackTriggers = document.querySelectorAll('.userback-trigger');
+  if (userbackTriggers.length) {
+    userbackTriggers.forEach(trigger => {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        Userback.open('general', 'form');
+      });
+    })
+  }
+});
+
+

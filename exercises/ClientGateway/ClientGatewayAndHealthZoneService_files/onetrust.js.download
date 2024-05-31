@@ -1,0 +1,46 @@
+(function () {
+  const ONETRUST_STRICTLY_NECESSARY = 'C0001';
+  const ONETRUST_PERFORMANCE = 'C0002';
+  const ONETRUST_FUNCTIONAL = 'C0003';
+  const ONETRUST_TARGETING = 'C0004';
+  const ONETRUST_SOCIAL_MEDIA = 'C0005';
+
+  function getConsents() {
+    const groups = window.OnetrustActiveGroups;
+    if (!groups) return [];
+    return groups.split(',').filter(Boolean);
+  }
+
+  function waitUntil (condFn, interval, maxRetry) {
+    let retries = 0;
+
+    const check = () => {
+      if (!condFn() && retries < maxRetry) {
+        retries++;
+        setTimeout(check, interval);
+      }
+    };
+    check();
+  };
+  waitUntil(() => {
+     if (window.OneTrust === undefined || window.OnetrustActiveGroups === undefined) return false;
+
+    window.OptanonWrapper = () => {
+      // When user updates OneTrust consent, reload the page
+      window.OneTrust.OnConsentChanged(() => {
+        window.location.reload();
+      });
+    };
+
+    const consents = getConsents();
+    if (!consents.length) return false;
+
+    window.OneTrust.InsertScript('/_static/js/analytics-google-tag-manager.js', 'head', null, null, ONETRUST_PERFORMANCE);
+    window.OneTrust.InsertScript('/_static/js/analytics-segment.js', 'head', null, null, ONETRUST_PERFORMANCE);
+    window.OneTrust.InsertScript('/_static/js/segment.js', 'head', null,  null, ONETRUST_PERFORMANCE);
+    window.OneTrust.InsertScript('https://cdn.optimizely.com/js/15784060578.js', 'head', null, null, ONETRUST_PERFORMANCE);
+    window.OneTrust.InsertScript('/_static/js/analytics-munchkin.js', 'head', null, null, ONETRUST_TARGETING);
+    window.OneTrust.InsertScript('/_static/js/analytics-drift.js', 'head', null, null, ONETRUST_TARGETING);
+    return true;
+  }, 500, 20);
+})();

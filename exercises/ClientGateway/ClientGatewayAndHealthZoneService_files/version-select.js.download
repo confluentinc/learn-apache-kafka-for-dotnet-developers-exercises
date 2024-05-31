@@ -1,0 +1,125 @@
+/*
+  Version select
+  */
+(function () {
+  // This script makes use of a number of globally defined variables set in
+  // component repos' _local-static/js/script.js. These values include:
+  //   - docMinorVersions - array of current versions
+  //   - includeOldVersions - boolean determining inclusion of old 'cp-' versions
+  const globs = {
+    docMinorVersions: typeof docMinorVersions === 'undefined' ? false : docMinorVersions,
+    liveVersioningMethod: typeof liveVersioningMethod === 'undefined' ? 'patch' : liveVersioningMethod,
+    includeOldVersions: typeof includeOldVersions === 'undefined' ? false : !!includeOldVersions,
+    minorJapaneseVersions: typeof minorJapaneseVersions === 'undefined' ? false: minorJapaneseVersions,
+    versionComponent: typeof versionComponent === 'undefined' ? false: versionComponent
+  }
+
+  const pageLanguage = document.documentElement.getAttribute('lang');
+  const pathParts = window.location.pathname.split('/');
+  pathParts.shift() // remove the empty segment caused by splitting on forward slash
+  const language = pageLanguage === 'en' ? '' : pathParts.shift();
+
+  // UIF-1369 The url structure is no longer reliable due to changes to DOCS_COMPONENT_PAGE_NAME
+  // usage. Finding the component is done with the aid of a check for values that are
+  // "version-like" to find where to split the path and extract values
+  const componentPathParts = [];
+  function isVersionLike(pathPart) {
+    const part = pathPart.trim().toLowerCase();
+    if (!part) return false;
+    if (part === 'current') return true;
+    return !!part.match(/^\d+\.\d+(?:\.\d+)?$/);
+  }
+  while (!!pathParts[0] && !isVersionLike(pathParts[0])) {
+    componentPathParts.push(pathParts.shift());
+  }
+  const component = componentPathParts.join('/'); // /ansible/current/something.html -> ansible
+  const currentVersion = pathParts.shift();
+  const pathTail = pathParts.join('/');
+
+  const versionsToUse = globs.docMinorVersions;
+  if (!versionsToUse) return;
+
+
+  function findIndex(arr, val) {
+    const isCallback = typeof val === 'function';
+    for (var i = 0; i < arr.length; i++) {
+      const isMatch = isCallback ? val(arr[i]) : val === arr[i];
+      if (isMatch) return i;
+    }
+  }
+
+  // Will fail if string created using new String()
+  // but this is non-standard and shouldn't be an issue
+  function isString(val) {
+    return typeof val === 'string';
+  }
+
+  // Converts string versions to objects to match the following scheme:
+  // {
+  //   title: string,
+  //   version: string
+  // }
+  // This is to maintain compatibility with 'docs-operator' component
+  // and support custom display values
+  function normalizeVersionToObject(rawVersion) {
+    if (isString(rawVersion)) {
+      return { title: rawVersion, version: rawVersion };
+    }
+    return rawVersion;
+  }
+
+
+  // Builds path to path used on selection of a version in the select element
+  function getVersionPath(version) {
+    if (version === 'all-legacy') {
+      return '/legacy/index.html';
+    }
+    const newPath = [];
+
+    if (language) newPath.push(language);
+    newPath.push(component);
+    newPath.push(version);
+    newPath.push(pathTail);
+    return '/' + newPath.join('/');
+  }
+
+  // Geenerate the option elements and append them to version selector
+  const select = $('#version-select');
+  const japaneseVersionsToUse = globs.minorJapaneseVersions;
+  [].concat(versionsToUse).forEach(function (rawVersion) {
+    const versionObj = normalizeVersionToObject(rawVersion);
+    const currentVersionObj = normalizeVersionToObject(versionsToUse[0]);
+    if (versionObj.version === currentVersionObj.version) versionObj.title = `${versionObj.title} (current)`;
+    if (versionObj.title.includes('cp-')) versionObj.title = versionObj.title.replace('cp-', globs.versionComponent !== 'platform' ? 'Confluent Platform ' : '');
+    const disabled = (!versionObj.version) || (pageLanguage !== 'en' && japaneseVersionsToUse && !japaneseVersionsToUse.includes(versionObj.version)) ? ' disabled' : '';
+    const selected = ((currentVersion === versionObj.version) ||
+        ((currentVersion == 'current') && (versionObj.version === currentVersionObj.version))) ? 'selected' : '';
+    const value = ((currentVersion == 'current') && (versionObj.version === currentVersionObj.version))?
+        currentVersion: versionObj.version;
+    const $option = $(
+      ['<option value="', value, '" ', selected, disabled, '>', versionObj.title, "</option>"].join("")
+    );
+    select.append($option);
+  });
+
+  if(globs.includeOldVersions) {
+    const selected = window.location.pathname.startsWith('/legacy') ? 'selected' : '';
+    select.append($(`<option value="all-legacy" ${selected}>Legacy Docs</option>`));
+  }
+
+  select.on('change', function () {
+    const version = this.value;
+    window.location =  getVersionPath(version);
+  });
+  $('#version-selector').addClass('active');
+
+  function navHandler() {
+    const currentVersion = window.location.pathname.split('/').find(p => isVersionLike(p));
+
+    const select = document.querySelector('#version-select');
+    if (select && select.value && currentVersion && select.value !== currentVersion) {
+      select.value = currentVersion;
+    }
+  }
+  window.addEventListener('pageshow', navHandler);
+})();

@@ -31,7 +31,7 @@ IHost host = Host.CreateDefaultBuilder(args)
 
             return new CachedSchemaRegistryClient(config.Value);
         });
-
+        
         services.AddSingleton<IProducer<String, HeartRateZoneReached>>(sp =>
         {
             var config = sp.GetRequiredService<IOptions<ProducerConfig>>();

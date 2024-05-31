@@ -1,0 +1,366 @@
+@charset "utf-8";
+/* CSS Document */
+/* *************** Start Globe Sytle *************** */
+body {
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #15202b;
+    background-color: #fff;
+    font-variant-ligatures: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h4,
+.h5,
+.h6 {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    word-wrap: break-word;
+}
+h1 {
+    font-size: 60px;
+    font-weight: 700;
+    line-height: 65px;
+    margin: 0;
+    padding: 15px 0;
+}
+h2 {
+    color: #333;
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 48px;
+    margin: 0;
+    padding: 10px 0;
+    margin-bottom: 8px;
+}
+h3 {
+    color: #333;
+    font-size: 30px;
+    font-weight: normal;
+    line-height: 36px;
+    margin: 0;
+    padding: 10px 0;
+}
+h4 {
+    color: #111820;
+    font-size: 26px;
+    font-weight: normal;
+    line-height: 34px;
+    margin: 0;
+    padding: 10px 0;
+}
+h5 {
+    font-weight: normal;
+    color: #333;
+    font-size: 24px;
+    line-height: 30px;
+    margin: 0;
+    padding: 10px 0;
+}
+p {
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #15202b;
+    margin-bottom: 20px;
+    word-wrap: break-word;
+}
+a {
+    text-decoration: none;
+    outline: 0;
+    color: #007EAF;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+}
+a,
+a:active,
+a:focus {
+    text-decoration: none;
+    outline: 0;
+}
+a[class*="button"]:hover {
+    text-decoration: none;
+    outline: 0;
+}
+a[style*="ffffff"]:hover {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+img {
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 0;
+    outline: 0;
+    max-width: 100%;
+    height: auto;
+    image-rendering: -webkit-optimize-contrast;
+}
+label {
+    margin-bottom: 0px;
+    font-weight: 400;
+}
+hr {
+    border: 0;
+    clear: both;
+    height: 1px;
+    background-color: #ccc;
+    margin-top: 30px;
+}
+iframe {
+    max-width: 100%;
+}
+
+/* ================================================================== */
+/* ================================================================== */
+/* IMPORTANT: This was all moved from the other stylesheets into here
+ * because it had some impact on the current site this needs to be cleaned up
+ */
+/* ================================================================== */
+/* ================================================================== */
+
+
+/* ========================================================================== */
+/*   --style1.css--  */
+/* ========================================================================== */
+.navbar-nav {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    float: right;
+    display: flex;
+    align-items: center;
+}
+.navbar-nav > li > a {
+    display: block;
+    padding: 10px 0;
+    margin: 0 20px;
+    font-size: 18px;
+    line-height: 20px;
+    color: #a7a7a8;
+    position: relative;
+    text-decoration: none;
+}
+.navbar-nav > li:hover > a {
+    color: #fff;
+}
+.navbar-nav > li ul {
+    background-color: #fff;
+    left: 20px !important;
+    padding: 10px 10px 10px 0;
+    top: 45px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+
+    visibility: hidden;
+    opacity: 0;
+    transition: all 300ms ease;
+    position: absolute;
+    z-index: 10;
+}
+/*nav changes*/
+.navbar-nav > li:hover > ul,
+.navbar-nav > li > ul > li:hover > ul,
+.navbar-nav > li > ul > li > ul > li:hover > ul {
+    opacity: 1;
+    visibility: visible;
+}
+.navbar-nav > li ul li {
+    padding: 0;
+}
+.navbar-nav > li > ul {
+    left: 20px !important;
+    top: 45px;
+}
+.navbar-nav > li > ul > li > ul {
+    left: calc(100% + 10px) !important;
+    top: 0;
+    box-shadow: 0;
+}
+.navbar-nav > li > ul > li > ul > li > ul {
+    left: calc(100% + 10px) !important;
+    top: 0;
+    box-shadow: 0;
+}
+/*end nav changes*/
+.navbar-nav > li ul > li {
+    float: none;
+}
+.navbar-nav > li ul > li a {
+    text-decoration: none;
+    width: 100%;
+    display: block;
+    white-space: nowrap;
+    /* width: 140px; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 10px 0;
+    margin: 0 20px;
+    font-size: 18px;
+    line-height: 20px;
+    color: #15202b;
+    position: relative;
+}
+.navbar-nav > li ul > li a:hover {
+    color: #4597cb;
+}
+/* ========================= Start Header & Navigation Responsive Page ========================= */
+@media screen and (max-width: 1199px) {
+    .navbar-nav > li > a {
+        margin: 0px 14px;
+        font-size: 17px;
+    }
+}
+@media screen and (max-width: 991px) {
+    .navbar-nav > li > a {
+        font-size: 15px;
+        margin: 0 10px;
+    }
+}
+@media (min-width: 879px) and (max-width: 991px) {
+    .navbar-nav > li > a {
+        font-size: 13px;
+        margin: 0 10px;
+    }
+}
+
+/* hide header (JA pages, left sidepanel closed) */
+@media screen and (max-width: 1008px) {
+    .wy-body-for-nav.ja.one-column .content-header {
+        display: none !important;
+    }
+}
+/* hide header (JA pages, left sidepanel open) */
+@media screen and (max-width: 1342px) {
+    .wy-body-for-nav.ja:not(.one-column) .content-header {
+        display: none !important;
+    }
+}
+/* hide header (EN pages, left sidepanel open) */
+@media screen and (max-width: 1110px) {
+    .wy-body-for-nav:not(.one-column) .content-header {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 878px) {
+
+  /* hide header (EN pages, left sidepanel closed) */
+    .content-header {
+        display: none !important;
+    }
+}
+
+/* ========================= Start Globle Responsive Page ========================= */
+@media screen and (max-width: 991px) {
+    h2 {
+        font-size: 38px;
+        line-height: 46px;
+    }
+    h3 {
+        font-size: 26px !important;
+        line-height: 36px !important;
+    }
+    .main_banner p {
+        font-size: 20px;
+    }
+}
+@media screen and (max-width: 875px) {
+    h1 {
+        font-size: 48px;
+        line-height: 52px;
+    }
+}
+@media screen and (max-width: 568px) {
+    h1 {
+        font-size: 42px !important;
+        line-height: 48px !important;
+    }
+    h2 {
+        font-size: 28px;
+        line-height: 36px;
+    }
+}
+@media screen and (max-width: 400px) {
+    h1 {
+        font-size: 36px !important;
+        line-height: 38px !important;
+    }
+    h2 {
+        font-size: 26px;
+        line-height: 30px;
+    }
+    h3 {
+        font-size: 24px !important;
+        line-height: 30px !important;
+    }
+}
+
+/* =================================================================================== */
+/* -- style-f.css -- */
+/* =================================================================================== */
+.navbar-nav > li > a {
+    transition: none;
+}
+.navbar-nav > li:hover > a {
+    font-weight: 400;
+    color: #000;
+}
+.navbar-nav > li > a:after {
+    display: block;
+    content: attr(title);
+    font-weight: bold;
+    height: 1px;
+    color: transparent;
+    overflow: hidden;
+    visibility: hidden;
+}
+.navbar-nav > li > a {
+    color: #5d5d5d;
+}
+.navbar-nav > li > a {
+    font-size: 12px;
+}
+.navbar-nav > li > ul > li > ul {
+    left: calc(100% + 22px) !important;
+}
+
+.navbar-nav > li:not(.download-button):hover > a {
+    color: #111820;
+}
+.navbar-nav > li > a {
+    color: #343941;
+}
+
+.copy-code-button svg {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+    vertical-align: bottom;
+    margin-right: 3px;
+}
+
+/* =================================================================================== */
+/* -- style-responsive.css -- */
+/* =================================================================================== */
+body {
+    background-color: transparent;
+}
+footer {
+    border-top: 0;
+}
+p {
+    font-weight: 300;
+    line-height: 1.78;
+    color: #4a4a4a;
+    font-size: 18px;
+}

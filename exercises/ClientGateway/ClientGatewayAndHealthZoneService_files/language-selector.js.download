@@ -1,0 +1,120 @@
+const languages = {
+  en: {
+    display: 'English',
+    code: 'en-US'
+  },
+  ja: {
+    display: '日本語',
+    code: 'ja-jp'
+  }
+};
+
+// IE making life difficult as usual doesn't support 'includes' so this is a
+// helper to accomplish the same thing
+function includes(comparisons, val) {
+  return comparisons.indexOf(val) > -1;
+}
+
+function createOption(text, value, isSelected) {
+  if (isSelected) return `<li><div class="selected">${text}</div></li>`;
+  return `<li><a href="${value}">${text}</a></li>`;
+}
+
+function splitPath(pathString) {
+  // removes leading and trailing '/'
+  return pathString.split('/').filter(function (x) { return !!x });
+}
+
+const joinPath = (segments) => segments.filter(segment => segment !== undefined).join('/');
+
+const versionRegexPatterns = [
+  new RegExp('^current$'),
+  new RegExp('^[0-9]+\.[0-9]+$'),
+];
+
+const languageSelector = (function initLanguageSelector() {
+  'use-strict';
+
+  const containerElement = document.querySelector('.language-dropdown');
+  const optionsContainerElement = document.querySelector('.language-dropdown .dropdown-menu');
+
+  const componentName = document.documentElement.getAttribute('docs-component');
+  const activeLanguageKey = document.documentElement.getAttribute('lang');
+  const jaVersion = containerElement.getAttribute('ja-current-version')
+
+  const globs = {
+    minorJapaneseVersions: typeof minorJapaneseVersions === 'undefined' ? [] : minorJapaneseVersions
+  }
+
+  const getPagePathDetails = () => {
+    const pathParts = splitPath(window.location.pathname);
+
+    // Strip the language code so we can parse the remaining parts
+    if (activeLanguageKey !== 'en') pathParts.shift();
+    const componentPathParts = [];
+    const isVersionLike = (pathPart) => {
+      const part = pathPart ? pathPart.trim().toLowerCase() : null;
+
+      if (!part) return false;
+
+      return versionRegexPatterns.some(pattern => part.match(pattern));
+    }
+
+    // In the event there are no version components (such as /home/overview.html)
+    // all components are put into componentPathParts. This is fine as the remaining components
+    // are undefined or empty
+    while (pathParts[0] && !isVersionLike(pathParts[0])) {
+      componentPathParts.push(pathParts.shift());
+    }
+
+    const currentVersion = pathParts.shift()
+
+    const buildPath = (version, language = '') => {
+      const pathSegments = [''];
+      if (!['', 'en'].includes(language)) {
+        pathSegments.push(languages[language].code);
+      }
+
+      return joinPath([...pathSegments, ...componentPathParts, version, ...pathParts]);
+    };
+
+    const minorVersionMatch = currentVersion && currentVersion.match(/^\d+\.\d+/);
+
+    return {
+      currentVersion,
+      minorVersion: minorVersionMatch && minorVersionMatch[0] || null,
+      buildPath,
+    };
+  };
+
+  const pathDetails = getPagePathDetails();
+
+  const getPathForEnglish = () => {
+    return pathDetails.buildPath(pathDetails.currentVersion);
+  };
+
+  const getPathForNonEnglishLanguage = (languageKey) => {
+    let versionToUse;
+    if (includes(['docs-cloud', 'docs-common'], componentName)) {
+      versionToUse = pathDetails.currentVersion;
+    } else {
+      // Check for a Japanese version that corresponds to the English one
+      const jaVersions = globs.minorJapaneseVersions;
+      const hasJaVersion = jaVersions.includes(pathDetails.currentVersion);
+      // If we can't find a corresponding version, default to the latest Japanese version instead
+      versionToUse = hasJaVersion ? pathDetails.currentVersion : jaVersion;
+    }
+
+    return pathDetails.buildPath(versionToUse, languageKey);
+  };
+
+  const options = Object.keys(languages).map((key) => {
+    const lang = languages[key];
+    const updatedPath = key === 'en' ? getPathForEnglish() : getPathForNonEnglishLanguage(key)
+    return createOption(lang.display, updatedPath, activeLanguageKey === key);
+  });
+
+  // TODO If we can ditch IE, this should be refactored to append Option elements to
+  // a documentFragment and then insert all at once instead of building a string
+  optionsContainerElement.innerHTML = options.join('');
+})();

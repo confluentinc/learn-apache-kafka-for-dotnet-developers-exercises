@@ -1,0 +1,2258 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en" docs-component="docs-common">
+    <!--<![endif]-->
+    <head>
+        <meta charset="utf-8" />
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta class="swiftype" name="site-id" data-type="integer" content="1" />
+        <meta class="swiftype" name="language-id" data-type="integer" content="1" />
+        <meta class="swiftype" name="docs-boost" data-type="integer" content="8" />
+        
+        <meta name='zd-site-verification' content='0dew1bmkf2amytvoh39y8tj' />
+        <meta name='zd-site-verification' content='ut9n0zk4l3mco6m92eemsa' />
+
+        
+        <title>Confluent Documentation &#124; Confluent Documentation</title>
+        
+
+        <!-- Add page-level no index functionality -->
+        
+
+        <!-- OneTrust Cookies Consent Notice start for docs.confluent.io -->
+        <script type="text/javascript">
+            const domainId = location.hostname === 'docs.confluent.io'
+            ? 'de8a759b-2c2e-4d76-a8c3-5f9ab4205447'
+            : 'de8a759b-2c2e-4d76-a8c3-5f9ab4205447-test';
+            const autoblockScript = document.createElement('script');
+            const otSDKStubScript = document.createElement('script');
+            const onetrustScript = document.createElement('script');
+            autoblockScript.src = 'https://cdn.cookielaw.org/consent/' + domainId + '/OtAutoBlock.js';
+            otSDKStubScript.src = 'https://cdn.cookielaw.org/scripttemplates/otSDKStub.js';
+            otSDKStubScript.setAttribute('data-document-language', 'true');
+            otSDKStubScript.setAttribute('charset', 'UTF-8');
+            otSDKStubScript.setAttribute('data-domain-script', domainId);
+            onetrustScript.src = '../_static/js/onetrust.js';
+            document.head.appendChild(autoblockScript);
+            document.head.appendChild(otSDKStubScript);
+            document.head.appendChild(onetrustScript);
+        </script>
+        <!-- OneTrust Cookies Consent Notice end for docs.confluent.io -->
+        
+        
+        <link
+            rel="shortcut icon"
+            href="../_static/favicon.ico"
+        />
+        
+        
+
+        
+        
+        
+        <link
+            rel="canonical"
+            href="https://docs.confluent.io/home/overview.html"
+        />
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <link
+            rel="stylesheet"
+            href="../_static/css/theme.css"
+            type="text/css"
+        />
+        
+        
+        
+        <link
+            rel="stylesheet"
+            href="../_static/pygments.css"
+            type="text/css"
+        />
+        
+        <link
+            rel="stylesheet"
+            href="../_static/css/theme.css"
+            type="text/css"
+        />
+        
+        <link
+            rel="stylesheet"
+            href="../_static/tabs.css"
+            type="text/css"
+        />
+        
+        <link
+            rel="stylesheet"
+            href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css"
+            type="text/css"
+        />
+        
+        <link
+            rel="stylesheet"
+            href="../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css"
+            type="text/css"
+        />
+        
+        <link
+            rel="stylesheet"
+            href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css"
+            type="text/css"
+        />
+        
+        <link
+            rel="stylesheet"
+            href="../_static/css/confluent.css"
+            type="text/css"
+        />
+        
+        <link
+            rel="stylesheet"
+            href="../_static/css/com_google_fonts_Lato_Roboto.css"
+            type="text/css"
+        />
+        
+        <link
+            rel="stylesheet"
+            href="../_static/css/bootstrap.min.css"
+            type="text/css"
+        />
+        
+        <link
+            rel="stylesheet"
+            href="../_static/css/style.css"
+            type="text/css"
+        />
+        
+        <link
+            rel="stylesheet"
+            href="../_static/css/core.css"
+            type="text/css"
+        />
+        
+        <link
+            rel="stylesheet"
+            href="../_static/_local-static/css/style.css"
+            type="text/css"
+        />
+        
+        
+
+        <link
+            rel="stylesheet"
+            id="roboto-css"
+            href="https://fonts.googleapis.com/css?family=Roboto%3A400%2C300%2C100%2C500%2C700"
+            type="text/css"
+            media="all"
+        />
+        <link
+            rel="index"
+            title="Index"
+            href="../genindex.html"
+        />
+        <link
+            rel="search"
+            title="Search"
+            href="../search.html"
+        />
+        <link
+            rel="top"
+            title="Python  documentation"
+            href="../index.html"
+        />
+        
+        
+        <script src="../_static/js/modernizr.min.js"></script>
+        <noscript>
+            <style>
+                .wy-nav-side {
+                    opacity: 1 !important;
+                }
+                .sticky-menu {
+                    display: none !important;
+                }
+                .wy-nav-content-wrap {
+                    width: 100% !important;
+                }
+            </style>
+        </noscript>
+    </head>
+<body class="wy-body-for-nav landing-page home-landing-page" role="document">
+          <svg style="display: none" width="14" height="14">
+            <symbol id="arrow-inline" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M294.1 256L167 129c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.3 34 0L345 239c9.1 9.1
+            9.3 23.7.7 33.1L201.1 417c-4.7 4.7-10.9 7-17 7s-12.3-2.3-17-7c-9.4-9.4-9.4-24.6 0-33.9l127-127.1z"></path></symbol>
+          </svg>
+
+        <div class="page-headerbar">
+  <div class="page-headerbar-inner">
+    <div class="logo-container">
+      <a 
+        href="https://confluent.io/" 
+        title="Confluent" 
+        class="logo"
+        >
+        <div class="tiny-logo">
+          <svg width="21" height="21" xmlns:x="ns_extend;" xmlns:i="ns_ai;" xmlns:graph="ns_graphs;"
+    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px"
+    y="0px" viewBox="0 0 43 43" style="enable-background:new 0 0 43 43;" xml:space="preserve">
+    <g fill='#ffffff'>
+        <path class="st0"
+            d="M30.8,22.7c1.1-0.1,2.2-0.1,3.3-0.2v-0.8c-1.1-0.1-2.2-0.1-3.3-0.2l-3.3-0.1c-1.9-0.1-3.9-0.1-5.8-0.1   c0-1.9,0-3.9-0.1-5.8l-0.1-3.3c-0.1-1.1-0.1-2.2-0.2-3.3h-0.9c-0.1,1.1-0.1,2.2-0.2,3.3l-0.1,3.3c0,0.9,0,1.8,0,2.7   c-0.4-0.8-0.7-1.7-1.1-2.5l-1.4-3c-0.5-1-0.9-2-1.4-3L15.4,10c0.4,1.1,0.7,2.1,1.1,3.1l1.2,3.1c0.3,0.9,0.7,1.7,1,2.6   c-0.7-0.6-1.3-1.3-2-1.9l-2.4-2.3c-0.8-0.7-1.6-1.5-2.5-2.2l-0.7,0.7c0.7,0.8,1.5,1.6,2.2,2.5l2.3,2.4c0.6,0.7,1.3,1.3,1.9,2   c-0.8-0.3-1.7-0.7-2.6-1l-3.1-1.2c-1-0.4-2.1-0.8-3.1-1.1l-0.4,0.9c1,0.5,2,0.9,3,1.4l3,1.4c0.8,0.4,1.7,0.7,2.5,1.1   c-0.9,0-1.8,0-2.7,0l-3.3,0.1c-1.1,0.1-2.2,0.1-3.3,0.2v0.9c1.1,0.1,2.2,0.1,3.3,0.2l3.3,0.1c2,0.1,3.9,0.1,5.8,0.1   c0,1.9,0,3.9,0.1,5.8l0.1,3.3c0.1,1.1,0.1,2.2,0.2,3.3h0.8c0.1-1.1,0.1-2.2,0.2-3.3l0.1-3.3c0-0.9,0-1.9,0.1-2.8   c0.4,0.9,0.7,1.7,1.1,2.6l1.4,3c0.5,1,0.9,2,1.4,3l0.8-0.3c-0.3-1.1-0.7-2.1-1.1-3.1L24.1,28c-0.3-0.9-0.7-1.7-1-2.6   c0.7,0.7,1.3,1.3,2,1.9l2.4,2.3c0.8,0.7,1.6,1.5,2.5,2.2l0.6-0.6c-0.7-0.8-1.5-1.6-2.2-2.5l-2.3-2.4c-0.6-0.7-1.3-1.4-1.9-2   c0.9,0.3,1.7,0.7,2.6,1l3.1,1.2c1,0.4,2.1,0.8,3.1,1.1l0.3-0.8c-1-0.5-2-1-3-1.4l-3-1.4c-0.9-0.4-1.7-0.8-2.6-1.1   c0.9,0,1.9,0,2.8-0.1C27.5,22.8,30.8,22.7,30.8,22.7z">
+        </path>
+        <path class="st0"
+            d="M21.5,43C9.6,43,0,33.4,0,21.5S9.6,0,21.5,0S43,9.6,43,21.5S33.4,43,21.5,43 M21.5,2C10.8,2,2,10.8,2,21.5   S10.8,41,21.5,41S41,32.2,41,21.5S32.2,2,21.5,2">
+        </path>
+    </g>
+</svg>
+        </div>
+        <div class="regular-logo">
+          <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="212"
+      height="41"
+      viewBox="0 0 212 41"
+    >
+    <g fill="#0074A1" fill-rule="evenodd">
+    <path d="M62.065 22.19H64c-.755 3.472-3.705 5.81-7.646 5.81C51.728 28 48 24.55 48 19.989 48 15.427 51.728 12 56.354 12c3.94 0 6.89 2.315 7.646 5.787h-1.935c-.661-2.519-2.785-4.107-5.71-4.107-3.635 0-6.467 2.7-6.467 6.309 0 3.608 2.832 6.332 6.466 6.332 2.926 0 5.05-1.635 5.71-4.131M84 20c0 4.455-3.57 8-8 8s-8-3.545-8-8 3.57-8 8-8 8 3.545 8 8m-1.808 0c0-3.5-2.711-6.318-6.192-6.318-3.48 0-6.192 2.818-6.192 6.318 0 3.5 2.712 6.318 6.192 6.318S82.192 23.5 82.192 20M103 12v16h-1.48l-9.75-12.612V28H90V12h1.435l9.794 12.777V12zM111.86 13.718V19.6h8.15v1.717h-8.15V28H110V12h11v1.718zM138 26.282V28h-11V12h1.914v14.282zM155 20.994c0 4.185-2.79 7.006-7 7.006s-7-2.82-7-7.006V12h1.9v8.994c0 3.075 2.02 5.295 5.1 5.295 3.055 0 5.1-2.22 5.1-5.295V12h1.9v8.994zM163.826 13.718V19.2h8.25v1.718h-8.25v5.365H173V28h-11V12h11v1.718zM191 12v16h-1.48l-9.75-12.612V28H178V12h1.435l9.794 12.777V12zM210 13.718h-5.626V28h-1.77V13.718H197V12h13zM26.375 20.975c.875-.047 1.75-.075 2.625-.139v-.672c-.875-.064-1.75-.092-2.625-.14l-2.625-.081c-1.54-.047-3.08-.06-4.622-.07-.003-1.54-.01-3.082-.051-4.623l-.074-2.625c-.045-.875-.07-1.75-.132-2.625h-.742c-.062.875-.087 1.75-.132 2.625l-.073 2.625c-.02.723-.029 1.447-.036 2.17-.285-.665-.57-1.33-.865-1.991l-1.072-2.397c-.377-.79-.735-1.59-1.127-2.375l-.684.285c.277.831.589 1.65.882 2.475l.937 2.454c.258.675.526 1.346.796 2.018a129.517 129.517 0 0 0-1.56-1.509l-1.908-1.804c-.65-.587-1.287-1.188-1.95-1.763l-.523.524c.574.663 1.175 1.3 1.762 1.95l1.804 1.908c.498.525 1.003 1.043 1.509 1.56-.672-.27-1.343-.538-2.019-.796l-2.453-.937c-.825-.293-1.644-.605-2.476-.883l-.284.685c.785.392 1.584.75 2.375 1.127l2.397 1.072c.66.295 1.325.58 1.99.864-.723.008-1.446.017-2.17.036l-2.624.074c-.875.045-1.75.07-2.625.132v.742c.875.062 1.75.087 2.625.132l2.625.073c1.542.042 3.083.049 4.624.052.01 1.54.022 3.081.069 4.622l.082 2.625c.047.875.075 1.75.139 2.625h.672c.064-.875.092-1.75.14-2.625l.081-2.625c.023-.741.035-1.482.046-2.223.292.681.587 1.361.892 2.037l1.08 2.393c.378.79.738 1.588 1.133 2.373l.62-.259c-.275-.832-.583-1.651-.875-2.478l-.93-2.455c-.262-.694-.534-1.383-.808-2.072.531.517 1.063 1.032 1.604 1.54l1.913 1.799c.652.585 1.29 1.184 1.955 1.758l.476-.476c-.574-.664-1.173-1.303-1.758-1.955l-1.799-1.914a132.32 132.32 0 0 0-1.539-1.603c.688.275 1.377.546 2.07.809l2.457.929c.826.292 1.645.6 2.478.876l.258-.622c-.785-.393-1.582-.755-2.373-1.133l-2.393-1.08c-.676-.304-1.356-.598-2.036-.892.74-.01 1.481-.022 2.222-.045l2.625-.082z" />
+    <path d="M19 37C9.626 37 2 29.374 2 20 2 10.626 9.626 3 19 3c9.374 0 17 7.626 17 17 0 9.374-7.626 17-17 17m0-32.41C10.503 4.59 3.59 11.502 3.59 20S10.503 35.41 19 35.41 34.41 28.497 34.41 20 27.497 4.59 19 4.59" />
+    </g>
+</svg>
+        </div>
+      </a>
+      <div class="secondary-logo-container">
+        <a 
+          href="/" 
+          title="Documentation" 
+          rel="home"
+          trackingText="logo_text">
+          documentation
+        </a>
+      </div>
+    </div>
+    
+<div class="page-header-nav-mobile">
+  <div class="nav-options">
+    <div class="cta-wrapper">
+      
+<a
+  href="https://www.confluent.io/get-started/"
+  class="cta-button-alt-light"
+  >Get Started Free</a>
+
+      </div>
+      
+      <button class="search-toggle-mobile" type="button">
+        <img src="/_static/images/icons/icon-search-simple.svg" />
+      </button>
+      
+      <div class="hamburger">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+      
+      <div class="search-wrapper-mobile">
+        <form class="search-input-form">
+          <img
+            class="search-input-icon"
+            src="/_static/images/icons/icon-search-simple.svg"
+          />
+          <input type="text" class="st-search-input st-default-search-input"
+          id="st-search-input-mobile" placeholder="Search documentation"
+          />
+          <button class="search-close" type="button">
+            <img src="/_static/images/icons/icon-close.svg" />
+          </button>
+        </form>
+      </div>
+      
+  </div>
+  <nav class="mobile-nav">
+    <ul class="nav-accordions">
+      <li class="cta">
+<a
+  href="https://www.confluent.io/get-started/"
+  class="cta-button-alt-light"
+  >Get Started Free</a>
+</li>
+
+      
+      <li class="nav-accordion-wrapper">
+        <div class="nav-accordion">
+          <div
+            aria-label=""
+            class="header"
+            id="courseMenuMobile">
+            Courses
+            <div class="arrow"></div>
+          </div>
+          <ul class="menu" aria-labelledby="courseMenuMobile" role="menu">
+            
+<div class="nav-menu-section">
+  
+  
+<div class="callout left">
+  
+  <div class="callout-content">
+    <div class="callout-title uppercase">What are the courses?</div>
+    <p>Video courses covering Apache Kafka basics, advanced concepts, setup and use cases, and everything in between.</p>
+    <a class="callout-action text-uppercase" href="https://developer.confluent.io/courses/">
+      <span>Learning pathways (24)</span>
+      <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+    </a>
+  </div>
+</div>
+
+  
+  <div class="nav-content">
+  
+    <div>
+      
+      
+      <div class="callout-title column-title">
+        New Courses
+      </div>
+      
+      
+      
+      <a
+        class="nav-item"
+        href="https://developer.confluent.io/courses/apache-flink/intro/"
+        >
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title"><span class="em mr-2">New</span>Apache Flink® 101</div>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item"
+        href="https://developer.confluent.io/courses/flink-java/overview/"
+        >
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title"><span class="em mr-2">New</span>Building Flink® Apps in Java</div>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item"
+        href="https://developer.confluent.io/courses/apache-kafka-for-dotnet/overview/"
+        >
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title"><span class="em mr-2">New</span>Kafka® for .NET Developers</div>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item"
+        href="https://developer.confluent.io/courses/event-modeling/intro/"
+        >
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title"><span class="em mr-2">New</span>Practical Event Modeling</div>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item"
+        href="https://developer.confluent.io/courses/hybrid-cloud/intro/"
+        >
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title"><span class="em mr-2">New</span>Hybrid and Multicloud Architecture</div>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item"
+        href="https://developer.confluent.io/courses/data-streaming-systems/overview/"
+        >
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title"><span class="em mr-2">New</span>Mastering Production Data Streaming Systems with Apache Kafka®</div>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+    </div>
+  
+    <div>
+      
+      
+      <div class="callout-title column-title">
+        Featured Courses
+      </div>
+      
+      
+      
+      <a
+        class="nav-item"
+        href="https://developer.confluent.io/courses/apache-kafka/events/"
+        >
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">Kafka® 101</div>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item"
+        href="https://developer.confluent.io/courses/kafka-connect/intro/"
+        >
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">Kafka® Connect 101</div>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item"
+        href="https://developer.confluent.io/courses/kafka-streams/get-started/"
+        >
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">Kafka Streams 101</div>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item"
+        href="https://developer.confluent.io/courses/schema-registry/key-concepts/"
+        >
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">Schema Registry 101</div>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item"
+        href="https://developer.confluent.io/courses/ksqldb/intro/"
+        >
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">ksqlDB 101</div>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item"
+        href="https://developer.confluent.io/courses/data-mesh/intro/"
+        >
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">Data Mesh 101</div>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+    </div>
+  
+  </div>
+  
+</div>
+
+          </ul>
+        </div>
+      </li>
+      
+      <li class="nav-accordion-wrapper">
+        <div class="nav-accordion">
+          <div
+            aria-label=""
+            class="header"
+            id="learnMenuMobile">
+            Learn
+            <div class="arrow"></div>
+          </div>
+          <ul class="menu" aria-labelledby="learnMenuMobile" role="menu">
+            
+<div class="nav-menu-section">
+  
+  
+<div class="callout left">
+  
+  <div class="callout-content">
+    <div class="callout-title">Pick your learning path</div>
+    <p>A wide range of resources to get you started</p>
+    <a class="callout-action text-uppercase" href="https://developer.confluent.io/learn-kafka/">
+      <span>Start Learning</span>
+      <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+    </a>
+  </div>
+</div>
+
+  
+  <div class="nav-content">
+  
+    <div>
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://developer.confluent.io/learn/"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/alt/icon-book.svg" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">Articles</div>
+          
+          <p>Deep-dives into key concepts</p>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://developer.confluent.io/patterns/"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/alt/icon-stream-processing-cookbook-D.svg" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">Patterns</div>
+          
+          <p>Architectures for event streaming</p>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://developer.confluent.io/learn/apache-kafka-faqs/"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/alt/icon-question.svg" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">FAQs</div>
+          
+          <p>Q & A about Kafka® and its ecosystem</p>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+    </div>
+  
+    <div>
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://www.confluent.io/blog/"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/alt/icon-blog.svg" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">Blog</div>
+          
+          <p>The Confluent blog</p>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://developer.confluent.io/learn-more/"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/icon-confluent-spark-light.png" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title"><span class="em mr-2">New</span>Learn More</div>
+          
+          <p>Our podcast, Streaming Audio</p>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+    </div>
+  
+  </div>
+  
+</div>
+
+          </ul>
+        </div>
+      </li>
+      
+      <li class="nav-accordion-wrapper">
+        <div class="nav-accordion">
+          <div
+            aria-label=""
+            class="header"
+            id="designBuildRunMenuMobile">
+            Build
+            <div class="arrow"></div>
+          </div>
+          <ul class="menu" aria-labelledby="designBuildRunMenuMobile" role="menu">
+            
+<div class="nav-menu-section">
+  
+  
+<div class="callout left">
+  
+  <div class="callout-content">
+    <div class="callout-title">Design. Build. Run.</div>
+    <p>Build a client app, explore use cases, and build on our demos and resources</p>
+    <a class="callout-action text-uppercase" href="https://developer.confluent.io/#designbuildrun">
+      <span>Start Building</span>
+      <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+    </a>
+  </div>
+</div>
+
+  
+  <div class="nav-content">
+  
+    <div>
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://developer.confluent.io/get-started/java/"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/alt/icon-docs.svg" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">Language Guides</div>
+          
+          <p>Build apps in your favorite language</p>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://developer.confluent.io/tutorials/"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/alt/icon-stream-processing-cookbook-D.svg" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">Tutorials</div>
+          
+          <p>Hands-on stream processing examples</p>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://developer.confluent.io/demos-examples/"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/alt/icon-developer.svg" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">Demos</div>
+          
+          <p>More resources to get you started</p>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+    </div>
+  
+  </div>
+  
+</div>
+
+          </ul>
+        </div>
+      </li>
+      
+      <li class="nav-accordion-wrapper">
+        <div class="nav-accordion">
+          <div
+            aria-label=""
+            class="header"
+            id="communityMenuMobile">
+            Community
+            <div class="arrow"></div>
+          </div>
+          <ul class="menu" aria-labelledby="communityMenuMobile" role="menu">
+            
+<div class="nav-menu-section">
+  
+  
+<div class="callout left">
+  
+  <div class="callout-content">
+    <div class="callout-title">Join the Community</div>
+    <p>Confluent proudly supports the global community of streaming platforms, real-time data streams, Apache Kafka®️, and its ecosystems</p>
+    <a class="callout-action text-uppercase" href="https://www.confluent.io/community">
+      <span>Learn More</span>
+      <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+    </a>
+  </div>
+</div>
+
+  
+  <div class="nav-content">
+  
+    <div>
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://events.confluent.io/meetups"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/alt/icon-venue.svg" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">Meetups &amp; Events</div>
+          
+          <p>Kafka and data streaming community</p>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://developer.confluent.io/community/ask-the-community/"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/alt/icon-question.svg" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">Ask the Community</div>
+          
+          <p>Community forums and Slack channels</p>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://developer.confluent.io/catalysts/"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/alt/icon-catalyst.svg" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">Community Catalysts</div>
+          
+          <p>Sharing expertise with the community</p>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://developer.confluent.io/the-confluent-devx-newsletter/"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/alt/icon-mail-light.svg" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">DevX Newsletter</div>
+          
+          <p>Bi-weekly newsletter with Apache Kafka® resources, news from the community, and fun links.</p>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://www.datastreamingawards.io/"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/alt/icon-current.svg" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">Data Streaming Awards</div>
+          
+          <p>Nominate amazing use cases and view previous winners</p>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://developer.confluent.io/case-studies/"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/alt/icon-global-light.svg" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title"><span class="em mr-2">New</span>Community Use Cases</div>
+          
+          <p>Real-world Examples of Apache Kafka® and Flink® in action</p>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+    </div>
+  
+    <div>
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://www.kafka-summit.org/events/kafka-summit-bangalore-2024/register"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/alt/icon-current.svg" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title"><span class="em mr-2">New</span>Kafka Summit 2024 - Bangalore</div>
+          
+          <p>Register now!</p>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://www.kafka-summit.org/kafka-summit-london-2024"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/alt/icon-current.svg" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title"><span class="em mr-2">New</span>Kafka Summit 2024 - London</div>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://www.confluent.io/events/current"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/alt/icon-current.svg" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title"><span class="em mr-2">New</span>Current 2024</div>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://www.confluent.io/events/current/2023"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/alt/icon-current.svg" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">Current 2023</div>
+          
+          <p>View sessions and slides from Current 2023</p>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://www.kafka-summit.org/kafka-summit-london-2023"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/alt/icon-kafka-blue.svg" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">Kafka Summit 2023</div>
+          
+          <p>View sessions and slides from Kafka Summit 2023</p>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+    </div>
+  
+  </div>
+  
+</div>
+
+          </ul>
+        </div>
+      </li>
+      
+    </ul>
+  </nav>
+</div>
+    
+<div class="page-header-nav">
+  
+  <div class="dropdown">
+    <a
+      href="https://developer.confluent.io/learn-kafka/"
+      id="courseMenu"
+      data-hover="dropdown"
+      data-delay="250"
+      data-hover-delay="400"
+      aria-label=""
+      aria-haspopup="true"
+      aria=expanded="false">
+      Courses
+    </a>
+    <div
+        class="dropdown-menu dropdown-menu-center"
+        aria-labelledby="courseMenu"
+        role="menu">
+      
+<div class="nav-menu-section">
+  
+  
+<div class="callout left">
+  
+  <div class="callout-content">
+    <div class="callout-title uppercase">What are the courses?</div>
+    <p>Video courses covering Apache Kafka basics, advanced concepts, setup and use cases, and everything in between.</p>
+    <a class="callout-action text-uppercase" href="https://developer.confluent.io/courses/">
+      <span>Learning pathways (24)</span>
+      <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+    </a>
+  </div>
+</div>
+
+  
+  <div class="nav-content">
+  
+    <div>
+      
+      
+      <div class="callout-title column-title">
+        New Courses
+      </div>
+      
+      
+      
+      <a
+        class="nav-item"
+        href="https://developer.confluent.io/courses/apache-flink/intro/"
+        >
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title"><span class="em mr-2">New</span>Apache Flink® 101</div>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item"
+        href="https://developer.confluent.io/courses/flink-java/overview/"
+        >
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title"><span class="em mr-2">New</span>Building Flink® Apps in Java</div>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item"
+        href="https://developer.confluent.io/courses/apache-kafka-for-dotnet/overview/"
+        >
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title"><span class="em mr-2">New</span>Kafka® for .NET Developers</div>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item"
+        href="https://developer.confluent.io/courses/event-modeling/intro/"
+        >
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title"><span class="em mr-2">New</span>Practical Event Modeling</div>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item"
+        href="https://developer.confluent.io/courses/hybrid-cloud/intro/"
+        >
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title"><span class="em mr-2">New</span>Hybrid and Multicloud Architecture</div>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item"
+        href="https://developer.confluent.io/courses/data-streaming-systems/overview/"
+        >
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title"><span class="em mr-2">New</span>Mastering Production Data Streaming Systems with Apache Kafka®</div>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+    </div>
+  
+    <div>
+      
+      
+      <div class="callout-title column-title">
+        Featured Courses
+      </div>
+      
+      
+      
+      <a
+        class="nav-item"
+        href="https://developer.confluent.io/courses/apache-kafka/events/"
+        >
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">Kafka® 101</div>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item"
+        href="https://developer.confluent.io/courses/kafka-connect/intro/"
+        >
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">Kafka® Connect 101</div>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item"
+        href="https://developer.confluent.io/courses/kafka-streams/get-started/"
+        >
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">Kafka Streams 101</div>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item"
+        href="https://developer.confluent.io/courses/schema-registry/key-concepts/"
+        >
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">Schema Registry 101</div>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item"
+        href="https://developer.confluent.io/courses/ksqldb/intro/"
+        >
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">ksqlDB 101</div>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item"
+        href="https://developer.confluent.io/courses/data-mesh/intro/"
+        >
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">Data Mesh 101</div>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+    </div>
+  
+  </div>
+  
+</div>
+
+    </div>
+  </div>
+  
+  <div class="dropdown">
+    <a
+      href="https://developer.confluent.io/learn/"
+      id="learnMenu"
+      data-hover="dropdown"
+      data-delay="250"
+      data-hover-delay="400"
+      aria-label=""
+      aria-haspopup="true"
+      aria=expanded="false">
+      Learn
+    </a>
+    <div
+        class="dropdown-menu dropdown-menu-center"
+        aria-labelledby="learnMenu"
+        role="menu">
+      
+<div class="nav-menu-section">
+  
+  
+<div class="callout left">
+  
+  <div class="callout-content">
+    <div class="callout-title">Pick your learning path</div>
+    <p>A wide range of resources to get you started</p>
+    <a class="callout-action text-uppercase" href="https://developer.confluent.io/learn-kafka/">
+      <span>Start Learning</span>
+      <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+    </a>
+  </div>
+</div>
+
+  
+  <div class="nav-content">
+  
+    <div>
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://developer.confluent.io/learn/"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/alt/icon-book.svg" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">Articles</div>
+          
+          <p>Deep-dives into key concepts</p>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://developer.confluent.io/patterns/"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/alt/icon-stream-processing-cookbook-D.svg" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">Patterns</div>
+          
+          <p>Architectures for event streaming</p>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://developer.confluent.io/learn/apache-kafka-faqs/"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/alt/icon-question.svg" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">FAQs</div>
+          
+          <p>Q & A about Kafka® and its ecosystem</p>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+    </div>
+  
+    <div>
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://www.confluent.io/blog/"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/alt/icon-blog.svg" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">Blog</div>
+          
+          <p>The Confluent blog</p>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://developer.confluent.io/learn-more/"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/icon-confluent-spark-light.png" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title"><span class="em mr-2">New</span>Learn More</div>
+          
+          <p>Our podcast, Streaming Audio</p>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+    </div>
+  
+  </div>
+  
+</div>
+
+    </div>
+  </div>
+  
+  <div class="dropdown">
+    <a
+      href="https://developer.confluent.io/#designbuildrun"
+      id="designBuildRunMenu"
+      data-hover="dropdown"
+      data-delay="250"
+      data-hover-delay="400"
+      aria-label=""
+      aria-haspopup="true"
+      aria=expanded="false">
+      Build
+    </a>
+    <div
+        class="dropdown-menu dropdown-menu-center"
+        aria-labelledby="designBuildRunMenu"
+        role="menu">
+      
+<div class="nav-menu-section">
+  
+  
+<div class="callout left">
+  
+  <div class="callout-content">
+    <div class="callout-title">Design. Build. Run.</div>
+    <p>Build a client app, explore use cases, and build on our demos and resources</p>
+    <a class="callout-action text-uppercase" href="https://developer.confluent.io/#designbuildrun">
+      <span>Start Building</span>
+      <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+    </a>
+  </div>
+</div>
+
+  
+  <div class="nav-content">
+  
+    <div>
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://developer.confluent.io/get-started/java/"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/alt/icon-docs.svg" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">Language Guides</div>
+          
+          <p>Build apps in your favorite language</p>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://developer.confluent.io/tutorials/"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/alt/icon-stream-processing-cookbook-D.svg" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">Tutorials</div>
+          
+          <p>Hands-on stream processing examples</p>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://developer.confluent.io/demos-examples/"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/alt/icon-developer.svg" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">Demos</div>
+          
+          <p>More resources to get you started</p>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+    </div>
+  
+  </div>
+  
+</div>
+
+    </div>
+  </div>
+  
+  <div class="dropdown">
+    <a
+      href="https://developer.confluent.io/community/"
+      id="communityMenu"
+      data-hover="dropdown"
+      data-delay="250"
+      data-hover-delay="400"
+      aria-label=""
+      aria-haspopup="true"
+      aria=expanded="false">
+      Community
+    </a>
+    <div
+        class="dropdown-menu dropdown-menu-right"
+        aria-labelledby="communityMenu"
+        role="menu">
+      
+<div class="nav-menu-section">
+  
+  
+<div class="callout left">
+  
+  <div class="callout-content">
+    <div class="callout-title">Join the Community</div>
+    <p>Confluent proudly supports the global community of streaming platforms, real-time data streams, Apache Kafka®️, and its ecosystems</p>
+    <a class="callout-action text-uppercase" href="https://www.confluent.io/community">
+      <span>Learn More</span>
+      <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+    </a>
+  </div>
+</div>
+
+  
+  <div class="nav-content">
+  
+    <div>
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://events.confluent.io/meetups"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/alt/icon-venue.svg" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">Meetups &amp; Events</div>
+          
+          <p>Kafka and data streaming community</p>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://developer.confluent.io/community/ask-the-community/"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/alt/icon-question.svg" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">Ask the Community</div>
+          
+          <p>Community forums and Slack channels</p>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://developer.confluent.io/catalysts/"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/alt/icon-catalyst.svg" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">Community Catalysts</div>
+          
+          <p>Sharing expertise with the community</p>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://developer.confluent.io/the-confluent-devx-newsletter/"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/alt/icon-mail-light.svg" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">DevX Newsletter</div>
+          
+          <p>Bi-weekly newsletter with Apache Kafka® resources, news from the community, and fun links.</p>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://www.datastreamingawards.io/"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/alt/icon-current.svg" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">Data Streaming Awards</div>
+          
+          <p>Nominate amazing use cases and view previous winners</p>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://developer.confluent.io/case-studies/"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/alt/icon-global-light.svg" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title"><span class="em mr-2">New</span>Community Use Cases</div>
+          
+          <p>Real-world Examples of Apache Kafka® and Flink® in action</p>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+    </div>
+  
+    <div>
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://www.kafka-summit.org/events/kafka-summit-bangalore-2024/register"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/alt/icon-current.svg" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title"><span class="em mr-2">New</span>Kafka Summit 2024 - Bangalore</div>
+          
+          <p>Register now!</p>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://www.kafka-summit.org/kafka-summit-london-2024"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/alt/icon-current.svg" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title"><span class="em mr-2">New</span>Kafka Summit 2024 - London</div>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://www.confluent.io/events/current"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/alt/icon-current.svg" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title"><span class="em mr-2">New</span>Current 2024</div>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://www.confluent.io/events/current/2023"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/alt/icon-current.svg" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">Current 2023</div>
+          
+          <p>View sessions and slides from Current 2023</p>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+      
+      <a
+        class="nav-item with-icon"
+        href="https://www.kafka-summit.org/kafka-summit-london-2023"
+        >
+        
+        <img class="nav-item-icon" src="/_static/images/icons/alt/icon-kafka-blue.svg" />
+        
+        <div class="nav-item-inner">
+          <div class="nav-item-title">Kafka Summit 2023</div>
+          
+          <p>View sessions and slides from Kafka Summit 2023</p>
+          
+        </div>
+        <div class="arrow-icon"><svg><use xlink:href="#arrow-inline"></use></svg></div>
+      </a>
+      
+      
+    </div>
+  
+  </div>
+  
+</div>
+
+    </div>
+  </div>
+  
+  <div class="dropdown">
+    <a
+      href="https://developer.confluent.io/"
+      id="confluent-developer"
+      data-delay="250"
+      data-hover-delay="400"
+      aria-label="Confluent Developer"
+      aria-haspopup="false"
+      aria=expanded="false">
+      Developer
+    </a>
+  </div>
+  
+<a
+  href="https://www.confluent.io/get-started/"
+  class="cta-button-alt-light"
+  >Get Started Free</a>
+
+  
+  <button class="search-toggle" type="button">
+    <img src="/_static/images/icons/icon-search-simple.svg" />
+  </button>
+  <div class="search-wrapper">
+    <form class="search-input-form">
+      <img class="search-input-icon" src="/_static/images/icons/icon-search-simple.svg">
+      <input
+          type="text"
+          class="st-search-input st-default-search-input"
+          id="st-search-input"
+          placeholder="Search documentation"
+          />
+      <button class="search-close" type="button">
+        <img src="/_static/images/icons/icon-close.svg" />
+      </button>
+    </form>
+  </div>
+  
+  
+<!-- TODO: the HTML tag will need the proper lang code for the -->
+<!-- current lang to work without extra code -->
+<div class="language-dropdown dropdown " ja-current-version="">
+  <button
+    id="lang-dropdown"
+    type="button"
+    class="dropdown-toggle"
+    data-toggle="dropdown"
+    aria-haspopup="true"
+    aria-expanded="false">
+    <img src="/_static/images/icons/alt/icon-globe.svg" />
+  </button>
+  <ul class="dropdown-menu" role="menu">
+  </ul>
+</div>
+
+</div>
+  </div>
+</div>
+<div class="page-headerbar-subnav">
+  <div class="subnav-header">
+    <a href="/home/overview.html"><span>Confluent Documentation</span></a>
+  </div>
+  <div class="subnav-breadcrumbs">
+    
+
+
+
+  </div>
+  <div class="mobile-nav-x-toggle" data-toggle='wy-nav-top'></div>
+</div>
+
+
+        <main class="c-body">
+            <div class="wy-grid-for-nav">
+                
+                <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+                    <div class="wy-side-scroll">
+                        <div
+                            class="wy-menu wy-menu-vertical"
+                            role="navigation"
+                            aria-label="main navigation"
+                        >
+                            
+                            
+                            
+                            <p class="caption"><span class="caption-text">CONFLUENT PRODUCTS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../kafka/index.html">Apache Kafka</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../kafka/overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kafka/introduction.html">Introduction to Kafka</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kafka/get-started.html">Get Started with Kafka</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kafka/kafka-apis.html">Kafka APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kafka/design/overview.html">Kafka Design</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kafka/design/index.html">Design Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kafka/design/file-system-constant-time.html">Kafka and the File System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kafka/design/efficient-design.html">Batch Processing for Efficiency</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kafka/design/producer-design.html">Producer Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kafka/design/consumer-design.html">Consumer Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kafka/design/delivery-semantics.html">Message Delivery Guarantees</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kafka/design/replication.html">Replication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kafka/design/log_compaction.html">Log Compaction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kafka/design/quotas.html">Quotas</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kafka/operations-tools/index.html">Kafka Tools and Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kafka/operations-tools/kafka-tools.html">Kafka Command-Line Interface (CLI) Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kafka/operations-tools/topic-operations.html">Topic Operations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kafka/operations-tools/partition-determination.html">Choose and Change Partition Count</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kafka/operations-tools/use-kafka-tools-ccloud.html">How to Use Kafka Tools With Confluent Cloud</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kafka/operations-tools/manage-consumer-groups.html">Manage Consumer Groups</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../kafka-client/index.html">Apache Kafka Clients</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../kafka-client/overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kafka-client/cloud-clients.html">Use Kafka Clients with Confluent Cloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kafka-client/platform-clients.html">Use Kafka Clients with Confluent Platform</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../_glossary.html">Glossary</a></li>
+</ul>
+
+                            
+                            
+                        </div>
+                    </div>
+
+                    <div class="selector-container">
+                        <div id='version-selector' class="option-selector-container">
+                          <label for="version-select">Version</label>
+                          <select id="version-select" class="option-selector"></select>
+                        </div>
+                    </div>
+                </nav>
+                <section
+                    data-toggle="wy-nav-shift"
+                    class="wy-nav-content-wrap"
+                >
+                    <div class="mobile-side-nav-toggle" data-toggle='wy-nav-top'><span></span></div>
+                    <div class="wy-nav-container">
+                        
+                        <div class="wy-nav-content scroll-container">
+                          
+                                    <div
+                                        role="main"
+                                        class="document"
+                                        itemscope="itemscope"
+                                        itemtype="http://schema.org/Article"
+                                    >
+                                        <div itemprop="articleBody" data-swiftype-index='true'>
+                                            
+  <meta name=“google-site-verification” content=“yy8MccjgU7EEISQFxVreY27e6IA5S7AxA7rtaF4eVBU” /><div class="section" id="confluent-documentation">
+<h1>Confluent Documentation<a class="headerlink" href="#confluent-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="content-section dark hero">
+    <div class="content-section-inner">
+        <div class="content-section-title">Confluent Documentation</div>
+        <p class="content-section-description">
+        Find the guides, samples, and reference content you need to use the streaming data platform based on Apache Kafka®.
+        </p>
+
+        <div class="card-row">
+            <a class="card icon-w-label-card" href="/cloud/current/overview.html">
+                <img class="card-label" src="/_static/images/icons/icon-arrow-right.svg" />
+                <img class="card-icon" src="/_static/images/icons/icon-cloud-blue.svg" />
+                <div class="card-title">
+                    Confluent Cloud
+                </div>
+                <div class="card-text">
+                    A fully-managed data streaming platform, available on AWS, GCP, and Azure, with a cloud-native
+                    Apache Kafka® engine for elastic scaling, enterprise-grade security, stream processing, and governance.
+                </div>
+            </a>
+            <a class="card icon-w-label-card" href="/platform/current/overview.html">
+                <img class="card-label" src="/_static/images/icons/icon-arrow-right.svg" />
+                <img class="card-icon" src="/_static/images/icons/icon-platform.svg" />
+                <div class="card-title">
+                    Confluent Platform
+                </div>
+                <div class="card-text">
+                    An enterprise-grade distribution of Apache Kafka that is available on-premises as self-managed
+                    software, complete with enterprise-grade security, stream processing, and governance tooling.
+                </div>
+            </a>
+            <a class="card icon-w-label-card" href="/kafka/overview.html">
+                <!-- <div class="card-label tag green">New</div> -->
+                <img class="card-label" src="/_static/images/icons/icon-arrow-right.svg" />
+                <img class="card-icon" src="/_static/images/icons/icon-kafka-blue.svg" />
+                <div class="card-title">
+                    Apache Kafka
+                </div>
+                <div class="card-text">
+                An open-source distributed data streaming engine used by thousands of companies to build streaming
+                data pipelines and applications, powering mission-critical operational and analytics use cases.
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="content-section bg-accent">
+    <div class="content-section-inner">
+        <div class="content-section-title">Learn Apache Kafka</div>
+        <div class="card-row">
+            <a class="card video-card" href="https://developer.confluent.io/learn-kafka/apache-kafka/events">
+                <img class="card-image" src="/_static/images/kafka-101-vid.jpg" />
+                <div class="card-title">
+                    Apache Kafka 101
+                </div>
+                <div class="card-title-subtext underlined">5 min</div>
+                <div class="card-text">
+                Learn the fundamentals of Apache Kafka with this video course.
+                </div>
+            </a>
+            <a class="card video-card" target="_blank" href="https://developer.confluent.io/learn-kafka/kafka-connect/intro/">
+
+                <img class="card-image" src="/_static/images/intro-to-kafka-connect-vid.jpg" />
+                <div class="card-title">
+                    Introduction to Kafka Connect
+                </div>
+                <div class="card-title-subtext underlined">10 min</div>
+                <div class="card-text">
+                    Learn the fundamentals of Kafka Connect with this video course.
+                </div>
+            </a>
+            <a class="card video-card" target="_blank" href="https://developer.confluent.io/learn-kafka/kafka-streams/get-started/">
+                <img class="card-image" src="/_static/images/kafka-streams-vid.jpg" />
+                <div class="card-title">
+                    Kafka Streams 101
+                </div>
+                <div class="card-title-subtext underlined">12 min</div>
+                <div class="card-text">
+                    Learn the fundamentals of Kafka Streams with this video.
+                </div>
+            </a>
+        </div>
+        <a class="content-section-seemore" target="_blank" href="https://developer.confluent.io/learn-kafka/">
+            <img class="seemore-icon" src="/_static/images/icons/icon-arrow-right.svg" />See more video courses
+        </a>
+    </div>
+</div>
+
+<div class="content-section divider">
+    <div class="content-section-inner">
+        <div class="content-section-title">Tutorials</div>
+        <div class="card-row">
+            <a class="card icon-card" target="_blank" href="https://developer.confluent.io/tutorials/kafka-console-consumer-read-specific-offsets-partitions/confluent.html">
+                <img class="card-icon" src="/_static/images/icons/icon-number-of-topics.svg" />
+                <div class="card-title">
+                    Read specific offset in  a topic
+                </div>
+                <div class="card-text">
+                    Read from a specific offset and partition with the Kafka Console Consumer.
+                </div>
+            </a>
+            <a class="card icon-card" target="_blank" href="https://developer.confluent.io/tutorials/kafka-console-consumer-producer-basics/kafka.html">
+                <img class="card-icon" src="/_static/images/icons/icon-number-of-producers.svg" />
+                <div class="card-title">
+                    Producer and Consumer Basics
+                </div>
+                <div class="card-text">
+                    Learn the simplest way to read and write messages to Kafka.
+                </div>
+            </a>
+            <a class="card icon-card" target="_blank" href="https://developer.confluent.io/tutorials/creating-first-apache-kafka-streams-application/confluent.html">
+                <img class="card-icon" src="/_static/images/icons/icon-kafka streams.svg" />
+                <div class="card-title">
+                    Build a Kafka Streams app
+                </div>
+                <div class="card-text">
+                    Get started building your first Kafka Streams application.
+                </div>
+            </a>
+        </div>
+        <div class="list-card-column">
+            <div class="list-card">
+                <div class="list-card-description">
+                    <image class="list-card-icon" src="/_static/images/icons/icon-replicator.svg" />
+                    <span>Change the number of partitions and replicas of a Kafka topic</span>
+                </div>
+                <a href="https://developer.confluent.io/tutorials/change-topic-partitions-replicas/ksql.html">Show me how</a>
+            </div>
+            <div class="list-card">
+                <div class="list-card-description">
+                    <image class="list-card-icon" src="/_static/images/icons/icon-number-of-producers.svg" />
+                    <span>Build your first Apache KafkaProducer application</span>
+                </div>
+                <a href="https://developer.confluent.io/tutorials/creating-first-apache-kafka-producer-application/confluent.html">Show me how</a>
+            </div>
+            <div class="list-card">
+                <div class="list-card-description">
+                    <image class="list-card-icon" src="/_static/images/icons/icon-message.svg" />
+                    <span>Maintain message ordering without duplication</span>
+                </div>
+                <a href="https://developer.confluent.io/tutorials/message-ordering/kafka.html">Show me how</a>
+            </div>
+        </div>
+        <a class="content-section-seemore" target="_blank" href="https://developer.confluent.io/tutorials/">
+            <img class="seemore-icon" src="/_static/images/icons/icon-arrow-right.svg" />See more tutorials
+        </a>
+    </div>
+</div>
+
+<div class="content-section">
+    <div class="content-section-inner">
+        <div class="content-section-title">Explore top use cases</div>
+        <div class="card-row">
+            <a class="card icon-card" target="_blank" href="https://github.com/confluentinc/demo-application-modernization">
+                <img class="card-icon" src="/_static/images/icons/icon-microservices.svg" />
+                <div class="card-title">Event-Driven Microservices</div>
+                <div class="card-text">Learn how to incrementally break a monolithic application down into microservices</div>
+            </a>
+            <a class="card icon-card" target="_blank" href="https://github.com/confluentinc/demo-change-data-capture">
+                <img class="card-icon" src="/_static/images/icons/icon-warehouse.svg" />
+                <div class="card-title">Real-Time Data Warehousing</div>
+                <div class="card-text">Learn how to build streaming data pipelines for real-time analytics</div>
+            </a>
+            <a class="card icon-card" target="_blank" href="https://github.com/confluentinc/live-labs/tree/master/DIMT2024">
+                <img class="card-icon" src="/_static/images/icons/icon-databases.svg" />
+                <div class="card-title">Cloud Database Pipelines</div>
+                <div class="card-text">Learn how to stream data to cloud databases to build real-time apps and experiences</div>
+            </a>
+            <a class="card icon-card" target="_blank" href="https://github.com/confluentinc/pmm/tree/master/messaging-modernization">
+                <img class="card-icon" src="/_static/images/icons/icon-message.svg" />
+                <div class="card-title">Messaging Integration</div>
+                <div class="card-text">Learn how to integrate legacy messaging systems with modern event streaming</div>
+            </a>
+            <a class="card icon-card" target="_blank" href="https://github.com/confluentinc/demo-siem-optimization">
+                <img class="card-icon" src="/_static/images/icons/icon-lock.svg" />
+                <div class="card-title">SIEM Optimization</div>
+                <div class="card-text">Learn how to optimize Security Information and Event Management solutions</div>
+            </a>
+            <a class="card icon-card" target="_blank" href="https://github.com/confluentinc/pmm/tree/master/demo-mainframe-zos">
+                <img class="card-icon" src="/_static/images/icons/icon-data-governance3.svg" />
+                <div class="card-title">Mainframe Integration</div>
+                <div class="card-text">Learn how to automate and easily deploy a IBM Z Development and Test Environment</div>
+            </a>
+        </div>
+    </div>
+</div></div>
+
+
+                                        </div>
+                                    </div>
+
+                                    <footer>
+  <div class="feedback-container">
+  <div class="feedback-container-inner">
+    <div>
+      <p>Was this doc page helpful?</p>
+      <a target="_blank" class="feedback-btn userback-trigger">
+        <img src="/_static/images/icons/icon-feedback.svg" />
+        <span>Give us feedback</span>
+      </a>
+    </div>
+    <div class="additional-links">
+      <p>Do you still need help?</p>
+      <a href="https://support.confluent.io/" target="_blank" rel="noopener noreferrer">
+        <img src="/_static/images/icons/icon-chat.svg" />
+        <span>Confluent support portal</span>
+      </a>
+      <a href="https://forum.confluent.io/" target="_blank" rel="noopener noreferrer">
+        <img src="/_static/images/icons/icon-community.svg" />
+        <span>Ask the community</span>
+      </a>
+    </div>
+  </div>
+</div>
+  <div class="subscription-container">
+  <div class="subscription-container-inner">
+    <!-- <form id="mktoForm_7106" style="display: none;"></form> -->
+    <div class='subscription-success'>Thank you. We'll be in touch!</div>
+    <div class="subscription-form-container">
+      <div class="subscription-title">Be the first to get updates and new content</div>
+      <form id="subscription-form">
+        <input placeholder="Email" name="email" id="email" required="required" type="email">
+        <button class="cta-button-alt slim" type="submit">Sign up</button>
+      </form>
+      <p>By clicking "SIGN UP" you agree that your personal data will be processed in accordance with
+        our <a data-test-id="link" rel="noopener" target="_blank"
+          href="https://www.confluent.io/confluent-privacy-statement">Privacy Policy</a>.</p>
+    </div>
+  </div>
+</div>
+  <nav class="footer-links-wrapper">
+    <div class="footer-links-block">
+      <ul class="footer-links">
+        <li><a target="_blank" rel="noopener noreferrer" href="https://www.confluent.io/">Confluent</a></li>
+        <li><a target="_blank" rel="noopener noreferrer" href="https://www.confluent.io/about/">About</a></li>
+        <li><a target="_blank" rel="noopener noreferrer" href="https://www.confluent.io/careers/">Careers</a></li>
+        <li><a target="_blank" rel="noopener noreferrer" href="https://www.confluent.io/contact/">Contact</a></li>
+        <li><a target="_blank" rel="noopener noreferrer" href="https://www.confluent.io/services/">Professional Services</a></li>
+      </ul>
+
+      <ul class="footer-links">
+        <li><a target="_blank" rel="noopener noreferrer" href="https://www.confluent.io/product/">Product</a></li>
+        <li><a target="_blank" rel="noopener noreferrer" href="https://www.confluent.io/confluent-cloud/tryfree/">Confluent Cloud</a></li>
+        <li><a target="_blank" rel="noopener noreferrer" href="https://www.confluent.io/ksql/">ksqlDB</a></li>
+      </ul>
+    </div>
+    <div class="footer-links-block">
+      <ul class="footer-links">
+        <li><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io">Developer</a></li>
+        <li><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn-kafka/">Free Courses</a></li>
+        <li><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/tutorials/">Tutorials</a></li>
+        <li><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/patterns/">Event Streaming Patterns</a></li>
+        <li><a href="https://docs.confluent.io/">Documentation</a></li>
+        <li><a target="_blank" rel="noopener noreferrer" href="https://www.confluent.io/blog/">Blog</a></li>
+        <li><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/podcast/">Podcast</a></li>
+      </ul>
+
+      <ul class="footer-links">
+        <li><a target="_blank" rel="noopener noreferrer" href="https://www.confluent.io/community/">Community</a></li>
+        <li><a target="_blank" rel="noopener noreferrer" href="https://forum.confluent.io/">Forum</a></li>
+        <li><a target="_blank" rel="noopener noreferrer" href="https://events.confluent.io/meetups/">Meetups</a></li>
+        <li><a target="_blank" rel="noopener noreferrer" href="https://www.kafka-summit.org/">Kafka Summit</a></li>
+        <li><a target="_blank" rel="noopener noreferrer" href="https://www.confluent.io/nominate/">Catalysts</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="sub-footer">
+    <ul class="social-media-links">
+      <li>
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/confluentinc">
+          <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 496 512" class="github-icon" xmlns="http://www.w3.org/2000/svg">
+            <path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z">
+            </path>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/company/confluent">
+          <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" class="linkedin-icon" xmlns="http://www.w3.org/2000/svg">
+            <path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z">
+            </path>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a target="_blank" rel="noopener noreferrer" href="https://www.slideshare.net/ConfluentInc">
+          <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" class="slideshare-icon" xmlns="http://www.w3.org/2000/svg">
+            <path d="M187.7 153.7c-34 0-61.7 25.7-61.7 57.7 0 31.7 27.7 57.7 61.7 57.7s61.7-26 61.7-57.7c0-32-27.7-57.7-61.7-57.7zm143.4 0c-34 0-61.7 25.7-61.7 57.7 0 31.7 27.7 57.7 61.7 57.7 34.3 0 61.7-26 61.7-57.7.1-32-27.4-57.7-61.7-57.7zm156.6 90l-6 4.3V49.7c0-27.4-20.6-49.7-46-49.7H76.6c-25.4 0-46 22.3-46 49.7V248c-2-1.4-4.3-2.9-6.3-4.3-15.1-10.6-25.1 4-16 17.7 18.3 22.6 53.1 50.3 106.3 72C58.3 525.1 252 555.7 248.9 457.5c0-.7.3-56.6.3-96.6 5.1 1.1 9.4 2.3 13.7 3.1 0 39.7.3 92.8.3 93.5-3.1 98.3 190.6 67.7 134.3-124 53.1-21.7 88-49.4 106.3-72 9.1-13.8-.9-28.3-16.1-17.8zm-30.5 19.2c-68.9 37.4-128.3 31.1-160.6 29.7-23.7-.9-32.6 9.1-33.7 24.9-10.3-7.7-18.6-15.5-20.3-17.1-5.1-5.4-13.7-8-27.1-7.7-31.7 1.1-89.7 7.4-157.4-28V72.3c0-34.9 8.9-45.7 40.6-45.7h317.7c30.3 0 40.9 12.9 40.9 45.7v190.6z">
+            </path>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/ConfluentInc">
+          <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" class="twitter-icon" xmlns="http://www.w3.org/2000/svg">
+            <path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z">
+            </path>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/confluent">
+          <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 576 512" class="youtube-icon" xmlns="http://www.w3.org/2000/svg">
+            <path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z">
+            </path>
+          </svg>
+        </a>
+      </li>
+    </ul>
+    <div class="legal-details-links">
+      <a target="_blank" rel="noopener noreferrer" href="https://www.confluent.io/terms-of-use/">Terms &amp;
+
+        Conditions</a>
+      <a target="_blank" rel="noopener noreferrer" href="https://www.confluent.io/legal/confluent-privacy-statement/">Privacy Policy</a>
+      <a target="_blank" rel="noopener noreferrer"
+        href="https://www.confluent.io/legal/confluent-privacy-statement/#california-privacy-rights">Do Not Sell
+        My Information</a>
+      <a target="_blank" rel="noopener noreferrer" href="https://www.confluent.io/modern-slavery-policy/">Modern
+        Slavery Policy</a>
+      <a target="_blank" onclick="OneTrust.ToggleInfoDisplay()">Cookie Settings</a>
+      <a target="_blank" class="userback-trigger">Feedback</a>
+    </div>
+
+    <!-- TODO need to make work with multi-languages -->
+    <p class="copyright-text">Copyright © Confluent, Inc. 2014-
+      <script>document.write(new Date().getFullYear());</script>
+      Apache, Apache Kafka, Kafka, the Kafka logo, Apache Flink, Flink, the Flink logo, Apache Iceberg, Iceberg, and the Iceberg logo are trademarks of the <a target="_blank" rel="noopener noreferrer" href="https://www.apache.org/">Apache Software Foundation</a></p>
+  </div>
+  <div id="docs-ai-assistant" />
+</footer>
+                          
+                            <div class="sticky-menu-column">
+                                <nav class="sticky-menu">
+                                    <div class="sticky-nav-title">On this page:</div>
+                                    <ul></ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="toggle-columns"></div>
+
+            
+
+        </main>
+
+
+<script type="text/javascript" id="documentation_options" data-url_root="">
+    var DOCUMENTATION_OPTIONS = {
+        URL_ROOT: '',
+        VERSION: '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE: true
+        };
+</script>
+<script type="text/javascript" src="../_static/documentation_options.js"></script>
+<script type="text/javascript" src="../_static/jquery.js"></script>
+<script type="text/javascript" src="../_static/underscore.js"></script>
+<script type="text/javascript" src="../_static/doctools.js"></script>
+
+
+
+<script type="text/javascript" src="../_static/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../_static/js/theme.js"></script>
+
+
+
+<script type="text/javascript">
+    jQuery(function () {
+        SphinxRtdTheme.StickyNav.enable();
+    });
+</script>
+
+
+<!-- The docVersions are loaded from current so the doc nav always contains all versions without having to update old
+    versions with new releases -->
+<script type="text/javascript" src="../_static/js/jquery.swiftype.search.js"></script>
+<script type="text/javascript" src="../_static/js/jquery.swiftype.autocomplete.js"></script>
+<script type="text/javascript" src="../_static/js/bootstrap-hover-dropdown.min.js"></script>
+<script type="text/javascript" src="../_static/js/confluent.js"></script>
+<script type="text/javascript" src="../_static/js/intercept-referrer.js"></script>
+
+<script type="text/javascript" src="../_static/js/version-select.js"></script>
+<script type="text/javascript" src="../_static/js/nav-scroll.js"></script>
+
+<script type="text/javascript" src="../_static/js/language-selector.js"></script>
+
+
+<script type="text/javascript" src="../_static/js/swiftype-search.js"></script>
+
+<script type="text/javascript" src="../_static/js/marketo-form.js"></script>
+
+
+<script type="text/javascript" src="https://docs-ai-assistant.confluent.io/ai-assistant.js"></script>
+</body>
+
+</html>

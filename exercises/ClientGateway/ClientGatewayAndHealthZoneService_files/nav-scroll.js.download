@@ -1,0 +1,280 @@
+// This is a catch-all file of functionality that supports things like
+// the sticky nav, copy-to-clipboard, and auto scroll
+
+var sidebarLinkActive = "active-link";
+
+function isSearchPage() {
+  return window.location.pathname === '/search.html';
+}
+// used to limit the amount of triggers of the scroll event
+// uses a trailing invokation as well to make sure we don't miss setting something
+function throttle(fn, delay) {
+  let previous = 0;
+  let trailing;
+  return function () {
+    const now = Date.now();
+    if (now - previous >= delay) {
+      fn();
+      previous = now;
+      if (trailing) {
+        clearTimeout(trailing);
+        trailing = null;
+      }
+    }
+    if (!trailing) {
+      trailing = setTimeout(() => {
+        fn();
+      }, delay + 50);
+    }
+  };
+}
+
+// on click of the right sticky nav links it will scroll into view with
+// offset for breadcrumbs
+function scrollIntoViewWithOffset(selector, offset) {
+  if (isSearchPage()) return;
+  const offsetVal = offset || 0;
+  const container = document.querySelector('.scroll-container');
+  const content = document.querySelector('.rst-content')
+  const elem = document.querySelector(selector);
+  const elemTop = elem.getBoundingClientRect().top;
+  const contentY = content.getBoundingClientRect().y;
+  container.scrollTo(0, -(contentY - elemTop + offsetVal));
+}
+
+// update right hand in page link active class
+function updateActiveClass() {
+    var urlHash = window.location.hash;
+    if (urlHash !== "") {
+        // highlight menu item
+        $(".sticky-menu-column a").each(function (i, v) {
+            if (urlHash === $(v).attr("href")) {
+                $(v).addClass(sidebarLinkActive);
+            }
+        });
+    }
+}
+
+// Scrolls the left nav to keep the current element at the top
+function scrollLeftNav() {
+  // -10 is to offset the dropshadow on the scroll container
+  // See the .wy-nav-vertical styling in confluent.css
+  if ($("a.current").length) {
+    const offset = $("a.current").position().top - 10 || 0;
+    $(".wy-side-scroll").scrollTop(offset);
+  }
+}
+
+function createStickyMenuItem(el) {
+  const urlHash = window.location.hash;
+  let classNames = el[2] + ' reference internal';
+  // sets the active class for the heading value that is currently scrolled to
+  if (urlHash !== "" && urlHash == el[0]) {
+    classNames += ` ${sidebarLinkActive}`;
+  }
+
+  const elem = '<li><a href="' +
+    el[0] +
+    '" class="' + classNames + '">' +
+    el[1] +
+    "</a></li>";
+  return elem;
+}
+
+function generateCopyCodeButtons() {
+  $(".highlight").each(function (i, v) {
+    $(v).append(
+      '<div class="copy-code-button"><svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#clipboard"><svg id="clipboard" viewBox="0 0 32 32" width="100%" height="100%"><g><path d="M10 12h12v4H10zM10 20h12v4H10zM18 2V0h-4v2H2v30h28V2H18zm8 26H6V6h4v2h12V6h4v22z"></path></g></svg></use></svg><span>Copy</span></div>'
+    );
+  });
+
+  $(".copy-code-button").on("click", function (e) {
+    const stripMarkup = function (html) {
+      var tmp = document.createElement("DIV");
+      tmp.innerHTML = html;
+      return tmp.textContent || tmp.innerText || "";
+    };
+
+    const copyToClipboard = function (str) {
+      const removeReturnFromCopiedString = str.substring(
+        0,
+        str.length - 1
+      );
+      const el = document.createElement("textarea");
+      el.value = removeReturnFromCopiedString;
+      el.setAttribute("readonly", "");
+      el.style.position = "absolute";
+      el.style.left = "-9999px";
+      document.body.appendChild(el);
+      const selected =
+        document.getSelection().rangeCount > 0
+        ? document.getSelection().getRangeAt(0)
+        : false;
+      el.select();
+      document.execCommand("copy");
+      document.body.removeChild(el);
+      if (selected) {
+        document.getSelection().removeAllRanges();
+        document.getSelection().addRange(selected);
+      }
+    };
+
+    const codeContent = $(e.currentTarget).closest(".highlight").find("pre").clone();
+    codeContent.find('.linenos').remove();
+    copyToClipboard(stripMarkup(codeContent.html()));
+  });
+}
+
+function initializeLeftNavScrollLocation() {
+  const scrollTarget = $(".wy-side-scroll");
+
+  function scrollToTop() {
+    scrollTarget.scrollTop(0);
+  }
+
+  if (
+    $(".wy-side-scroll .toctree-l2").length > 0 ||
+    $(".wy-side-scroll .toctree-l3").length > 0 ||
+    $(".wy-side-scroll .toctree-l4").length > 0
+  ) {
+    const scrollUpdate = setInterval(scrollToTop, 100);
+    window.setTimeout(() => {
+      scrollLeftNav();
+      clearInterval(scrollUpdate);
+    }, 150);
+  } else {
+    scrollLeftNav();
+  }
+}
+
+function isScrolledIntoView(el) {
+    var rect = el.getBoundingClientRect();
+    var elemTop = rect.top;
+    var elemBottom = rect.bottom;
+
+    // Only completely visible elements return true:
+    var isVisible = (elemTop >= 0) && (elemBottom <= window.innerHeight);
+    // Partially visible elements return true:
+    //isVisible = elemTop < window.innerHeight && elemBottom >= 0;
+    return isVisible;
+}
+
+// handles scrolling of the right sticky nav menu and updating the active element to match
+// the page's current scroll position
+function rightNavScrollUpdate() {
+  var headingPositions = new Array();
+  var loopCurrentHeading = "";
+
+  // builds list of current positions of the headers within the doc
+  $(".headerlink").each(function (i, v) {
+    // if this is a caption we do not want to add this to heading positions
+    var isCaption = $(v).parent().hasClass("caption");
+    if (!isCaption) {
+      var headerHref = $(v).attr("href");
+      var getPostMatch = $(v).attr("href").match("--");
+      var hasPostMatch = $(getPostMatch).length !== 0;
+      var isWyTableChild = $($.escapeSelector(headerHref)).parent().hasClass("wy-table-responsive");
+
+      if (!hasPostMatch && !isWyTableChild) {
+        headingPositions.push([
+          $(v).attr("href"),
+          $(v).parent().parent().offset().top
+        ]);
+      }
+    }
+  });
+  headingPositions.sort((a, b) => a[1] - b[1]);
+  const headingPositionsLength = headingPositions.length;
+
+  for (let i = 0; i < headingPositionsLength; i++) {
+    const headingOffsetTop = headingPositions[i][1];
+
+    if (headingOffsetTop >= 0) {
+      // Use the previous header unless this header is currently visible to the user
+      // 56px is an estimate of the header height - more efficient than calculating the height
+      if (headingOffsetTop > window.innerHeight - 56 && i > 0) {
+        loopCurrentHeading = headingPositions[i - 1][0];
+      } else {
+        loopCurrentHeading = headingPositions[i][0];
+      }
+
+      break;
+    }
+  }
+
+  // Sets the active sticky menu link item based on the current scroll position
+  $(".sticky-menu a").removeClass(sidebarLinkActive);
+  const menuLink =  $('.sticky-menu a[href$="' + loopCurrentHeading + '"]');
+  if (menuLink) {
+    menuLink.addClass(sidebarLinkActive);
+
+    if (menuLink[0] && !isScrolledIntoView(menuLink[0])) {
+      menuLink[0].scrollIntoView({block: "center"});
+    }
+  }
+}
+const scrollHandler = throttle(rightNavScrollUpdate, 200);
+
+$(function () {
+  const headingValues = new Array();
+
+  window.setTimeout(function () {
+    generateCopyCodeButtons();
+  }, 200);
+
+  // wait for toctree to build for 500ms before attempting to find an active element
+  // or scroll a given heading into view
+  window.setTimeout(function () {
+    initializeLeftNavScrollLocation();
+
+    if (window.location.hash) {
+      scrollIntoViewWithOffset(window.location.hash);
+    }
+  }, 500);
+
+  // Highlight the right column menu items based on the page's scroll position
+  $(".scroll-container").on("scroll", scrollHandler);
+
+  window.setTimeout(function () {
+    // iterates over all headerlinks in the main content and builds up a list of
+    // links to populate the right sticky nav
+    $(".wy-nav-content .headerlink").each(function (i, v) {
+      // image captions should not be included in the heading values
+      var isCaption = $(v).parent().hasClass("caption");
+      if (!isCaption) {
+        var headerHref = $(v).attr("href");
+        var headerTitle = $(v).parent().text().replace("¶", "");
+        var indentClass =
+          "indent-" + $(v).parent().get(0).tagName.toLowerCase();
+        var getPostMatch = headerHref.match("--");
+        var hasPostMatch = $(getPostMatch).length !== 0;
+        var isWyTableChild = $($.escapeSelector(headerHref)).parent().hasClass("wy-table-responsive");
+
+        if (!hasPostMatch && !isWyTableChild) {
+          headingValues.push([headerHref, headerTitle, indentClass]);
+        }
+      }
+    });
+
+    // builds the link elements from the heading values collected above
+    // TODO move this logic into the above each loop
+    const stickyMenuList = $(".sticky-menu ul");
+    for (let i = 0; i < headingValues.length; i++) {
+      const el = headingValues[i];
+      stickyMenuList.append(createStickyMenuItem(el));
+    }
+
+    // Click handler for sticky menu
+    $(".sticky-menu-column ul").on("click", "a", function (e) {
+      $(".sticky-menu-column a").removeClass(sidebarLinkActive);
+      $(e.currentTarget).addClass(sidebarLinkActive);
+    });
+
+    // Show the third column if necessary
+    if (headingValues.length > 1) {
+      $("body").addClass("third-column");
+    }
+  }, 250);
+
+  updateActiveClass();
+});

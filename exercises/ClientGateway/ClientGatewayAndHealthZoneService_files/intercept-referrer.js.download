@@ -1,0 +1,57 @@
+let sessionStorageNames = ['tracking_session_ref','tracking_utm_medium', 'tracking_utm_source', 'tracking_utm_campaign', 'tracking_utm_term', 'tracking_utm_content', 'tracking_utm_partner']
+let UTM_TAGS = ['utm_medium', 'utm_source', 'utm_campaign', 'utm_term', 'utm_content', 'utm_partner']
+
+//On page load check for UTM data, add to session storage if found
+if(window.location.href.includes('?')){
+    let urlParameters = window.location.href.split('?')[1].split('&')
+    urlParameters.forEach((p) => {
+        let tag = p.split('=')[0].replace('&', "")
+        let data = p.split('=')[1]
+        tag && data && UTM_TAGS.includes(tag) && sessionStorage.setItem(`tracking_${tag}`, data )
+    })
+}
+let trackingDataToAppend = ''
+sessionStorageNames.forEach((ssName) => {
+    let trackedValue = sessionStorage.getItem(ssName)
+    if(trackedValue){
+        let tagName = ssName.replace('tracking_', '')
+        if(trackingDataToAppend !== '') trackingDataToAppend = trackingDataToAppend.concat('&')
+        trackingDataToAppend = trackingDataToAppend.concat(`${tagName}=${trackedValue}`)
+    }
+})
+const allLinkTags = document.querySelectorAll('a')
+const confluentLinks = Array.from(allLinkTags).filter(
+    (linkTag) => 
+    linkTag.href.includes('www.confluent.io') ||
+    linkTag.href.includes('https://confluent.io') ||
+    linkTag.href.includes('https://developer.confluent'))
+    
+if(trackingDataToAppend !== ''){
+    confluentLinks.forEach((link) => {
+        const containsQuery = link.href.includes("?")
+        link.href = `${link.href}${containsQuery ? '&' : '?'}${trackingDataToAppend}`;
+    }) 
+}
+
+//Add a referrer and UTM query param to all confluent facing links
+if(!document.referrer.includes(document.location.hostname)) {
+    let referrer = document.referrer
+    referrer && sessionStorage.setItem('tracking_session_ref', referrer);
+}
+
+// Adds target=_blank to external links 
+const containsSchema = (targetLink) => {
+    return (targetLink.href.includes('http://') || targetLink.href.includes('https://'))
+}
+const isExternalLink = (targetLink) => {
+    return (
+        !targetLink.href.includes('docs.confluent.io') &&
+        !targetLink.hostname.includes(window.location.hostname) &&
+        !targetLink.hostname.includes('docs.confluent.io') &&
+        !targetLink.hostname.includes(window.location.hostname) &&
+        !targetLink.className.includes('internal')
+        )
+}
+
+const externalLinks = Array.from(allLinkTags).filter((linkTag) => isExternalLink(linkTag) && containsSchema(linkTag))
+externalLinks.forEach(eL => eL.setAttribute("target", "_blank"))
